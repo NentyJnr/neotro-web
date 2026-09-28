@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Neotro Attendance System",
+    "tag": "Attendance & ID",
+    "desc": "Smart attendance and ID card system for schools, replacing manual sign-in sheets with a verifiable digital record.",
+    "img": "",
+    "link": ""
+  },
+  {
+    "name": "Neotro School Portal",
+    "tag": "School systems",
+    "desc": "A school management portal covering admissions, academics, attendance and finance in one dashboard.",
+    "img": "",
+    "link": ""
+  },
+  {
+    "name": "Lecturra",
+    "tag": "EdTech / AI",
+    "desc": "An AI-assisted platform helping Nigerian and African tertiary faculty generate exams, prepare teaching materials and manage research and supervision workloads.",
+    "img": "",
+    "link": ""
+  },
+  {
+    "name": "Church Management System",
+    "tag": "Institutions",
+    "desc": "Membership, giving, attendance and communication tools for churches and community organisations.",
+    "img": "",
+    "link": ""
+  },
+  {
+    "name": "Neoppe",
+    "tag": "Construction / QS",
+    "desc": "An enterprise quantity surveying takeoff and estimating platform, bringing QS workflows out of spreadsheets and into an auditable digital tool.",
+    "img": "",
+    "link": ""
+  },
+  {
+    "name": "Business Portals",
+    "tag": "Local business",
+    "desc": "Custom web portals built for local businesses \u2014 including Tosphy Geospatial Nigeria Ltd and Edufact Academy \u2014 each with the specific tools that business needed.",
+    "img": "",
+    "link": ""
+  }
+]

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Manage projects — Neotro Ltd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <a href="index.html" class="brand"><span class="dot"></span>Neotro</a>
+      <nav class="links"><a href="index.html">Back to site</a></nav>
+    </div>
+  </div>
+</header>
+
+<main class="admin-wrap">
+  <div class="wrap" style="max-width:760px">
+    <div class="admin-head">
+      <h1>Manage projects</h1>
+      <p>This page is not linked from search or shared publicly — bookmark it. It edits the project list in your browser only; nothing here is public until you export and redeploy the file.</p>
+    </div>
+
+    <div class="panel">
+      <h2>How this works</h2>
+      <div class="step"><span class="n">1</span><p>This loads the site's current <code>data/projects.json</code>. Add, edit or remove projects below.</p></div>
+      <div class="step"><span class="n">2</span><p>Click <b>Export projects.json</b> to download the updated file.</p></div>
+      <div class="step"><span class="n">3</span><p>Replace <code>data/projects.json</code> on your host with the downloaded file (upload via your hosting dashboard, FTP, or your Git repo) and the live site updates.</p></div>
+    </div>
+
+    <div class="panel">
+      <h2>Add a project</h2>
+      <form id="projectForm" class="formgrid">
+        <div><label for="pName">Project name</label><input id="pName" required maxlength="80"/></div>
+        <div><label for="pTag">Category</label><input id="pTag" placeholder="e.g. School systems" maxlength="40"/></div>
+        <div class="full"><label for="pDesc">What problem does it solve?</label><textarea id="pDesc" required maxlength="240"></textarea></div>
+        <div><label for="pImg">Image URL (optional)</label><input id="pImg" type="url" placeholder="https://…"/></div>
+        <div><label for="pLink">Link (optional)</label><input id="pLink" type="url" placeholder="https://…"/></div>
+        <div class="full"><button type="submit" class="btn solid">Add to list</button></div>
+      </form>
+      <p class="msg" id="formMsg"></p>
+    </div>
+
+    <div class="panel">
+      <h2>Current projects</h2>
+      <div class="file-row">
+        <label for="fileInput" class="btn" style="cursor:pointer">Load a projects.json file</label>
+        <input id="fileInput" type="file" accept="application/json" style="display:none"/>
+        <button class="btn solid" id="exportBtn">Export projects.json</button>
+      </div>
+      <div id="list"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Add a client testimonial</h2>
+      <p style="color:var(--steel);font-size:.88rem;margin:-6px 0 18px">Only add real quotes from real clients, with their permission.</p>
+      <form id="testimonialForm" class="formgrid">
+        <div><label for="tName">Client name</label><input id="tName" required maxlength="60"/></div>
+        <div><label for="tRole">Role / organisation</label><input id="tRole" maxlength="60"/></div>
+        <div class="full"><label for="tQuote">Quote</label><textarea id="tQuote" required maxlength="300"></textarea></div>
+        <div><label for="tRating">Rating (1–5)</label><input id="tRating" type="number" min="1" max="5" value="5"/></div>
+        <div class="full"><button type="submit" class="btn solid">Add testimonial</button></div>
+      </form>
+      <p class="msg" id="testimonialMsg"></p>
+    </div>
+
+    <div class="panel">
+      <h2>Current testimonials</h2>
+      <div class="file-row">
+        <label for="tFileInput" class="btn" style="cursor:pointer">Load a testimonials.json file</label>
+        <input id="tFileInput" type="file" accept="application/json" style="display:none"/>
+        <button class="btn solid" id="tExportBtn">Export testimonials.json</button>
+      </div>
+      <div id="tList"></div>
+    </div>
+  </div>
+</main>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

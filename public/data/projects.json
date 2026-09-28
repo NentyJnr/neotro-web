@@ -1,0 +1,57 @@
+[
+  {
+    "id": "proj-1",
+    "name": "EduCore Comprehensive School Portal",
+    "category": "School Management",
+    "description": "Admissions, attendance, academics, finance and reporting for Nigerian schools, brought into one dashboard instead of a stack of registers.",
+    "img": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&auto=format&fit=crop&q=80",
+    "link": "https://gracecollege.ng",
+    "client": "Grace College & Academy, Lagos",
+    "metrics": "2,400+ Active Students",
+    "year": "2025"
+  },
+  {
+    "id": "proj-2",
+    "name": "SmartCheck Verifiable Attendance & Biometric ID System",
+    "category": "Attendance & ID",
+    "description": "Hardware-integrated QR & NFC tap-in system for real-time student check-ins and verifiable ID cards.",
+    "img": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80",
+    "link": "",
+    "client": "St. Augustine International Academy",
+    "metrics": "99.4% Attendance Accuracy",
+    "year": "2025"
+  },
+  {
+    "id": "proj-3",
+    "name": "Ecclesia Member & Giving Engine",
+    "category": "Church & Institution",
+    "description": "Membership, giving, attendance and communication tools for churches and community organisations.",
+    "img": "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=800&auto=format&fit=crop&q=80",
+    "link": "",
+    "client": "Redeemed Christian Church Network",
+    "metrics": "15,000+ Members Tracked",
+    "year": "2024"
+  },
+  {
+    "id": "proj-4",
+    "name": "TakeoffPro Digital QS Estimating Suite",
+    "category": "Construction & QS",
+    "description": "Digital takeoff and estimating tools that bring quantity surveying workflows out of spreadsheets and into something auditable.",
+    "img": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&auto=format&fit=crop&q=80",
+    "link": "",
+    "client": "Vanguard Engineering & Consultants",
+    "metrics": "70% Faster BOQ Preparation",
+    "year": "2026"
+  },
+  {
+    "id": "proj-5",
+    "name": "OmniBiz Merchant Order & Inventory Hub",
+    "category": "Business Portals",
+    "description": "Purpose-built web portal for FMCG distributors managing multi-warehouse stock, B2B ordering and local payment integration.",
+    "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+    "link": "",
+    "client": "Crown Logistics & Distribution Ltd",
+    "metrics": "₦450M+ Monthly Order Volume",
+    "year": "2025"
+  }
+]
