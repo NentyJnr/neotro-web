@@ -14,6 +14,7 @@ export const INITIAL_PROJECTS: Project[] = [
     techStack: ['React', 'Node.js', 'PostgreSQL', 'SMS Gateway'],
     featured: true,
     status: 'live',
+    link: 'https://neotro-portal.vercel.app/',
     year: '2025'
   },
   {

@@ -1,44 +1,83 @@
-# Neotro Ltd website
+# Neotro Ltd Corporate & Institutional Showcase Website
 
-Plain HTML/CSS/JS, no build step or framework required.
+Official modern web portal for **Neotro Ltd** — enterprise digital infrastructure, sovereign cloud, and institutional software solutions across Africa.
 
-## Structure
+Built with **React 19**, **TypeScript**, **Tailwind CSS v4**, **Vite 8**, and **Three.js**.
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+- **Framework**: React 19 + TypeScript (~6.0)
+- **Bundler & Tooling**: Vite 8 + `@vitejs/plugin-react`
+- **Styling**: Tailwind CSS v4 (`@tailwindcss/vite`) + Lucide React icons
+- **Interactive 3D / Graphics**: Three.js (interactive architectural canvas) + Pan-African animated vector routing network
+- **Deployment**: Vercel / Netlify / Static Edge Hosting (configured via `vercel.json`)
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18+ or v20+ recommended)
+- npm or pnpm
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
 ```
-index.html          public site
-admin.html           local tool for editing projects & testimonials
-css/styles.css        shared styles
-css/admin.css          admin-page-only styles
-js/main.js           renders projects.json and testimonials.json on the public site
-js/admin.js            add/edit/export projects.json and testimonials.json
-data/projects.json      the project list shown on the site
-data/testimonials.json    client quotes shown on the site (starts empty)
+
+### Development
+
+```bash
+# Start local Vite development server
+npm run dev
 ```
 
-## Sections
-- **Nav** — a services dropdown, plus links to How we work, Work, Reviews, Contact
-- **Method** — Neotro's own four-stage process (Survey → Design → Build → Support), grounded in the founder's quantity-surveying background, not copied from anyone else's framework
-- **Marquee** — a scrolling line of the company's positioning statement
-- **Testimonials** — starts empty; only add real client quotes, with their permission, via `admin.html`
+The application runs locally at `http://localhost:5173/`.
 
-## Running it locally
-Opening `index.html` directly by double-clicking won't load `projects.json` (browsers block local file fetches). Serve the folder instead, e.g.:
+### Production Build
 
+```bash
+# Type check and build optimized static assets
+npm run build
 ```
-npx serve .
-```
-or
-```
-python3 -m http.server
-```
-then open the printed local address.
 
-## Deploying
-Upload the whole folder to any static host — GitHub Pages, Netlify, Vercel, cPanel, or your own server. No build step needed.
+Production output will be generated in `dist/`.
 
-## Adding or removing projects
-1. Open `admin.html` (locally or on the live site — it's not linked from the main navigation, so keep the URL to yourself).
-2. Add a project, or remove one from the current list.
-3. Click **Export projects.json** to download the updated file.
-4. Replace `data/projects.json` on your host with the downloaded file and redeploy/upload.
+### Preview Production Build
 
-This keeps the site fully static — editing projects doesn't touch a database. If you'd rather have the admin page save changes live for every visitor without a manual redeploy step, that needs a small backend (an API + a real database) — worth doing once the project list starts changing often.
+```bash
+# Preview the production build locally
+npm run preview
+```
+
+---
+
+## 📂 Project Structure
+
+```text
+├── public/                 # Static assets, logos, brand vectors, sitemap, robots.txt
+│   ├── data/               # Vector path definitions (e.g., Africa country outlines)
+│   ├── images/             # Media and showcase illustrations
+│   ├── logos/              # Official Neotro Ltd vector marks and lockups
+│   ├── robots.txt          # Search engine crawling rules
+│   └── sitemap.xml         # Canonical search index sitemap
+├── src/
+│   ├── components/         # Modular React UI components (NeotroLogo, AfricaMotionMap, etc.)
+│   ├── data/               # Static showcase content, sector platforms, and initial data
+│   ├── App.tsx             # Main application orchestrator and interactive showcase
+│   ├── main.tsx            # Application entry point
+│   └── index.css           # Global typography and Tailwind CSS v4 layers
+├── vercel.json             # Vercel deployment rewrites and edge routing
+└── vite.config.ts          # Vite build configuration
+```
+
+---
+
+## 📄 License
+
+Proprietary © Neotro Ltd. All rights reserved.

@@ -1,0 +1,10 @@
+# Robots.txt for Neotro Ltd Portal
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /#admin
+
+# Search Engine Sitemaps
+Sitemap: https://neotro.ng/sitemap.xml
