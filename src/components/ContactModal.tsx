@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Send, CheckCircle2 } from 'lucide-react';
+import { X, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import type { ContactFormData, SectorType } from '../types';
 
 interface ContactModalProps {
@@ -24,18 +24,43 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
 
-    // Simulate real backend API call delay
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          institution: formData.organization,
+          service: formData.sector,
+          message: formData.problemDescription
+        })
+      });
+
+      const resData = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(resData.message || 'Failed to dispatch inquiry. Please email info@neotroltd.com.');
+      }
+
       setSubmitted(true);
-    }, 800);
+    } catch (err: any) {
+      setError(err.message || 'Error transmitting message. Please contact info@neotroltd.com.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleReset = () => {
@@ -150,21 +175,37 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 />
               </div>
 
+              {error && (
+                <div className="p-3 rounded-lg bg-rose-950/60 border border-rose-800 text-rose-300 text-xs flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                  <span>{error}</span>
+                </div>
+              )}
+
               <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition-colors"
+                  className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-colors flex items-center gap-2"
+                  className="px-6 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 disabled:bg-amber-500/60 disabled:cursor-not-allowed text-slate-950 font-bold text-sm transition-colors flex items-center gap-2 cursor-pointer"
                 >
-                  {loading ? 'Sending...' : 'Submit Inquiry'}
-                  <Send className="w-4 h-4" />
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Submit Inquiry</span>
+                      <Send className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </div>
             </form>

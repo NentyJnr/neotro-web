@@ -20,13 +20,17 @@ import {
   MessageSquare,
   Briefcase,
   HardHat,
-  Globe
+  Globe,
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
 
 export function App() {
   const [activeSection, setActiveSection] = useState<'top' | 'about' | 'sectors' | 'why-neotro' | 'partners' | 'contact'>('top');
   const [platformCategory, setPlatformCategory] = useState<'education' | 'construction' | 'websites'>('education');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [adminModalOpen, setAdminModalOpen] = useState(false);
   const [privacyModalOpen, setPrivacyModalOpen] = useState<'privacy' | 'terms' | null>(null);
   const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false);
@@ -179,13 +183,36 @@ export function App() {
     }
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setFormSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', institution: '', service: 'School management systems', message: '' });
-    }, 4500);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to dispatch inquiry. Please email info@neotroltd.com directly.');
+      }
+
+      setFormSubmitted(true);
+      setTimeout(() => {
+        setFormSubmitted(false);
+        setFormData({ name: '', email: '', phone: '', institution: '', service: 'Neotro School Portal (Academic ERP & Result Engine)', message: '' });
+      }, 6000);
+    } catch (err: any) {
+      setSubmitError(err.message || 'An error occurred while transmitting your inquiry. Please reach out to info@neotroltd.com.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleSaveProjects = (newProjects: Project[]) => {
@@ -1556,12 +1583,32 @@ export function App() {
                     in accordance with the Nigeria Data Protection Act (NDPA 2023).
                   </p>
 
+                  {submitError && (
+                    <div className="p-3.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2.5">
+                      <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                      <div>
+                        <strong className="font-semibold block mb-0.5">Unable to send message:</strong>
+                        <span>{submitError}</span>
+                      </div>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-lg bg-[#093824] hover:bg-[#0D4A30] text-white font-bold text-sm transition-all shadow-md hover:shadow-lg cursor-pointer inline-flex items-center justify-center gap-2 active:scale-98"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 rounded-lg bg-[#093824] hover:bg-[#0D4A30] disabled:bg-[#093824]/75 disabled:cursor-not-allowed text-white font-bold text-sm transition-all shadow-md hover:shadow-lg cursor-pointer inline-flex items-center justify-center gap-2 active:scale-98"
                   >
-                    <span>Submit Inquiry / Schedule Consultation</span>
-                    <ArrowRight className="w-4 h-4" />
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-white" />
+                        <span>Transmitting Inquiry...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Submit Inquiry / Schedule Consultation</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
                   </button>
                 </form>
               )}
