@@ -36,11 +36,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenContactMod
                 </button>
 
                 <a
-                  href="mailto:neotroltd@gmail.com"
+                  href="mailto:info@neotroltd.com"
                   className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 text-base font-semibold border border-slate-700 transition-colors"
                 >
                   <Mail className="w-4 h-4 text-amber-400" />
-                  neotroltd@gmail.com
+                  info@neotroltd.com
                 </a>
               </div>
             </div>
@@ -52,13 +52,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenContactMod
               </h3>
 
               <a
-                href="mailto:neotroltd@gmail.com"
+                href="mailto:info@neotroltd.com"
                 className="flex items-center gap-3 text-slate-300 hover:text-amber-400 transition-colors text-sm font-medium"
               >
                 <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 shrink-0">
                   <Mail className="w-4 h-4" />
                 </div>
-                <span className="truncate">neotroltd@gmail.com</span>
+                <span className="truncate">info@neotroltd.com</span>
               </a>
 
               <a

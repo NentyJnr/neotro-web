@@ -137,7 +137,7 @@ export const DataProtectionPolicyPage: React.FC<DataProtectionPolicyPageProps> =
             </button>
 
             <a
-              href="mailto:neotroltd@gmail.com"
+              href="mailto:info@neotroltd.com"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#093824] hover:bg-[#0D4A30] text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer"
             >
               <Mail className="w-3.5 h-3.5 text-emerald-300" />
@@ -196,7 +196,7 @@ export const DataProtectionPolicyPage: React.FC<DataProtectionPolicyPageProps> =
             </button>
 
             <a
-              href="mailto:neotroltd@gmail.com"
+              href="mailto:info@neotroltd.com"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs sm:text-sm font-semibold border border-white/20 transition-all cursor-pointer backdrop-blur-xs"
             >
               <Mail className="w-4 h-4 text-emerald-300" />
@@ -316,8 +316,8 @@ export const DataProtectionPolicyPage: React.FC<DataProtectionPolicyPageProps> =
                 <div className="text-[11px] text-slate-600 leading-relaxed bg-[#F7F9F8] p-3 rounded-xl border border-slate-200/60 space-y-1.5">
                   <div className="font-semibold text-[#093824]">Statutory Resolution Window</div>
                   <div>Subject Access Requests (SAR) are processed within 2 to 4 working weeks.</div>
-                  <a href="mailto:neotroltd@gmail.com" className="text-[#059669] font-bold hover:underline block pt-1">
-                    neotroltd@gmail.com →
+                  <a href="mailto:info@neotroltd.com" className="text-[#059669] font-bold hover:underline block pt-1">
+                    info@neotroltd.com →
                   </a>
                 </div>
               </div>
@@ -717,7 +717,7 @@ export const DataProtectionPolicyPage: React.FC<DataProtectionPolicyPageProps> =
                   <strong>Statutory Response Timeline:</strong> Customer requests based on any of the rights above shall be processed and handled between <strong>2 to 4 working weeks</strong>.
                 </p>
                 <div className="flex flex-wrap items-center gap-4 pt-1 font-mono text-[11px]">
-                  <span>Email: <a href="mailto:neotroltd@gmail.com" className="font-bold underline text-[#093824]">neotroltd@gmail.com</a></span>
+                  <span>Email: <a href="mailto:info@neotroltd.com" className="font-bold underline text-[#093824]">info@neotroltd.com</a></span>
                   <span>Call: <a href="tel:+2348030930762" className="font-bold underline text-[#093824]">+234 803 093 0762</a></span>
                 </div>
               </div>
@@ -824,8 +824,8 @@ export const DataProtectionPolicyPage: React.FC<DataProtectionPolicyPageProps> =
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="text-xs font-mono uppercase tracking-wider text-emerald-300 font-bold">Email Inquiries &amp; DPO</div>
-                  <a href="mailto:neotroltd@gmail.com" className="text-sm font-semibold hover:underline block truncate">
-                    neotroltd@gmail.com
+                  <a href="mailto:info@neotroltd.com" className="text-sm font-semibold hover:underline block truncate">
+                    info@neotroltd.com
                   </a>
                 </div>
 
@@ -945,8 +945,8 @@ export const DataProtectionPolicyPage: React.FC<DataProtectionPolicyPageProps> =
               NDPA Rights
             </button>
             <span>•</span>
-            <a href="mailto:neotroltd@gmail.com" className="hover:text-white transition-colors">
-              neotroltd@gmail.com
+            <a href="mailto:info@neotroltd.com" className="hover:text-white transition-colors">
+              info@neotroltd.com
             </a>
           </div>
         </div>

@@ -1391,7 +1391,7 @@ export function App() {
                 
                 {/* Email Card */}
                 <a 
-                  href="mailto:neotroltd@gmail.com"
+                  href="mailto:info@neotroltd.com"
                   className="flex items-center gap-4 p-4 rounded-xl bg-white border border-slate-200 hover:border-[#093824]/40 hover:shadow-sm transition-all group block shadow-xs"
                 >
                   <div className="w-11 h-11 rounded-lg bg-[#DCFCE7] text-[#093824] flex items-center justify-center shrink-0 border border-[#BBF7D0] group-hover:scale-105 transition-transform">
@@ -1399,7 +1399,7 @@ export function App() {
                   </div>
                   <div>
                     <span className="text-[11px] text-slate-500 font-medium uppercase tracking-wider block">Official Inquiries</span>
-                    <span className="text-[#093824] group-hover:underline transition-colors font-bold text-base">neotroltd@gmail.com</span>
+                    <span className="text-[#093824] group-hover:underline transition-colors font-bold text-base">info@neotroltd.com</span>
                   </div>
                 </a>
 
@@ -1603,10 +1603,10 @@ export function App() {
                 </p>
               </div>
               <a 
-                href="mailto:neotroltd@gmail.com"
+                href="mailto:info@neotroltd.com"
                 className="text-sm font-bold text-[#0B1F17] group-hover:text-[#093824] inline-flex items-center gap-1.5 transition-colors pt-3 border-t border-slate-100"
               >
-                <span>neotroltd@gmail.com</span>
+                <span>info@neotroltd.com</span>
                 <ArrowRight className="w-4 h-4 text-[#059669] group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
@@ -1625,10 +1625,10 @@ export function App() {
                 </p>
               </div>
               <a 
-                href="mailto:neotroltd@gmail.com"
+                href="mailto:info@neotroltd.com"
                 className="text-sm font-bold text-[#0B1F17] group-hover:text-[#093824] inline-flex items-center gap-1.5 transition-colors pt-3 border-t border-slate-100"
               >
-                <span>neotroltd@gmail.com</span>
+                <span>info@neotroltd.com</span>
                 <ArrowRight className="w-4 h-4 text-[#059669] group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
@@ -1647,10 +1647,10 @@ export function App() {
                 </p>
               </div>
               <a 
-                href="mailto:neotroltd@gmail.com"
+                href="mailto:info@neotroltd.com"
                 className="text-sm font-bold text-[#0B1F17] group-hover:text-[#093824] inline-flex items-center gap-1.5 transition-colors pt-3 border-t border-slate-100"
               >
-                <span>neotroltd@gmail.com</span>
+                <span>info@neotroltd.com</span>
                 <ArrowRight className="w-4 h-4 text-[#059669] group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
@@ -1702,10 +1702,10 @@ export function App() {
                     0800NEOTRO (+234 803 093 0762)
                   </a>
                   <a 
-                    href="mailto:neotroltd@gmail.com" 
+                    href="mailto:info@neotroltd.com" 
                     className="text-emerald-100 hover:text-white transition-colors block font-mono"
                   >
-                    neotroltd@gmail.com
+                    info@neotroltd.com
                   </a>
                 </div>
               </div>
@@ -1876,7 +1876,7 @@ export function App() {
                   <strong>4. Security Safeguards:</strong> Institutional records stored across Neotro platforms utilize encrypted database partitioning (AES-256), TLS 1.3 in-transit encryption, daily offsite snapshots, and strict Role-Based Access Control (RBAC).
                 </p>
                 <p>
-                  <strong>5. Data Subject Rights:</strong> In accordance with the NDPA 2023, you have the right to request access to, correction of, or complete deletion of your information by contacting our Data Protection Officer at <a href="mailto:neotroltd@gmail.com" className="text-[#093824] underline font-bold">neotroltd@gmail.com</a>.
+                  <strong>5. Data Subject Rights:</strong> In accordance with the NDPA 2023, you have the right to request access to, correction of, or complete deletion of your information by contacting our Data Protection Officer at <a href="mailto:info@neotroltd.com" className="text-[#093824] underline font-bold">info@neotroltd.com</a>.
                 </p>
               </div>
             ) : (

@@ -71,7 +71,7 @@ All required technical SEO infrastructure has been configured and validated in t
 * **Entities Declared:** `Organization` + `WebSite`
 * **Legal Name:** Neotro Limited
 * **HQ Location:** Lagos, Nigeria (`NG`)
-* **Contact Channel:** `contact@neotro.com`
+* **Contact Channel:** `info@neotroltd.com`
 * **Social Profiles:** `https://linkedin.com/company/neotro-ltd`
 * **Purpose:** Enables Google's Knowledge Graph to recognize Neotro Ltd as an established corporate entity and unlocks eligibility for Google Rich Snippets and Knowledge Panels.
 
@@ -202,7 +202,7 @@ For B2B software and digital service providers in Nigeria, having a verified Goo
 6. **Contact Information:**
    * Phone Number: Official corporate line / WhatsApp business contact.
    * Website: `https://neotro.ng`
-   * Email: `contact@neotro.com`
+   * Email: `info@neotroltd.com`
 7. **Business Hours:** Specify your working days and client support hours (e.g., Monday–Friday, 8:00 AM – 5:00 PM WAT).
 8. **Products & Services Catalog:** Add individual products matching the website solutions:
    * *Neotro School Management Portal*
