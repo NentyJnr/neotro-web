@@ -30,11 +30,22 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
   // CORS Preflight headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
+  }
+
+  // Health check & diagnostic status via GET
+  if (req.method === 'GET') {
+    return res.status(200).json({
+      status: 'active',
+      service: 'Neotro Ltd Contact API',
+      resendConfigured: Boolean(process.env.RESEND_API_KEY),
+      recipient: process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com',
+      timestamp: new Date().toISOString()
+    });
   }
 
   if (req.method !== 'POST') {
@@ -74,15 +85,13 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
     // Email Configuration
     const resendApiKey = process.env.RESEND_API_KEY;
     const notificationEmail = process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com';
-    // When using unverified domain in testing, Resend permits onboarding@resend.dev sending to account owner
-    // Once neotroltd.com domain is added in Resend, set FROM_EMAIL to e.g. "Neotro Portal <inquiry@neotroltd.com>"
     const fromEmail = process.env.FROM_EMAIL || 'Neotro Portal <onboarding@resend.dev>';
 
     if (!resendApiKey) {
       console.warn('RESEND_API_KEY environment variable is not configured.');
       return res.status(503).json({
         success: false,
-        message: 'Email service configuration pending (RESEND_API_KEY not set). Please email info@neotroltd.com directly.'
+        message: 'Email service configuration pending (RESEND_API_KEY not set in Vercel environment variables). Please email info@neotroltd.com directly.'
       });
     }
 

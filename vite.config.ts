@@ -8,49 +8,76 @@ function contactApiDevPlugin(): Plugin {
     name: 'api-contact-dev-server',
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url === '/api/contact' && req.method === 'POST') {
-          let bodyStr = '';
-          req.on('data', (chunk) => {
-            bodyStr += chunk;
-          });
-          req.on('end', async () => {
-            try {
-              const parsedBody = bodyStr ? JSON.parse(bodyStr) : {};
-              const customRes: any = {
-                setHeader(name: string, value: string) {
-                  res.setHeader(name, value);
-                  return this;
-                },
-                status(code: number) {
-                  res.statusCode = code;
-                  return this;
-                },
-                json(payload: any) {
-                  res.setHeader('Content-Type', 'application/json');
-                  res.end(JSON.stringify(payload));
-                  return this;
-                },
-                end() {
-                  res.end();
-                  return this;
-                }
-              };
+        if (req.url === '/api/contact') {
+          if (req.method === 'GET') {
+            const customRes: any = {
+              setHeader(name: string, value: string) {
+                res.setHeader(name, value);
+                return this;
+              },
+              status(code: number) {
+                res.statusCode = code;
+                return this;
+              },
+              json(payload: any) {
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify(payload));
+                return this;
+              },
+              end() {
+                res.end();
+                return this;
+              }
+            };
+            const customReq: any = { method: 'GET', body: {} };
+            handler(customReq, customRes);
+            return;
+          }
 
-              const customReq: any = {
-                method: req.method,
-                body: parsedBody
-              };
+          if (req.method === 'POST') {
+            let bodyStr = '';
+            req.on('data', (chunk) => {
+              bodyStr += chunk;
+            });
+            req.on('end', async () => {
+              try {
+                const parsedBody = bodyStr ? JSON.parse(bodyStr) : {};
+                const customRes: any = {
+                  setHeader(name: string, value: string) {
+                    res.setHeader(name, value);
+                    return this;
+                  },
+                  status(code: number) {
+                    res.statusCode = code;
+                    return this;
+                  },
+                  json(payload: any) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify(payload));
+                    return this;
+                  },
+                  end() {
+                    res.end();
+                    return this;
+                  }
+                };
 
-              await handler(customReq, customRes);
-            } catch (err: any) {
-              res.statusCode = 500;
-              res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify({ success: false, message: err.message }));
-            }
-          });
-        } else {
-          next();
+                const customReq: any = {
+                  method: req.method,
+                  body: parsedBody
+                };
+
+                await handler(customReq, customRes);
+              } catch (err: any) {
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ success: false, message: err.message }));
+              }
+            });
+            return;
+          }
         }
+        next();
       });
     }
   };
