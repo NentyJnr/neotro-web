@@ -1269,10 +1269,10 @@ export function App() {
               PROVEN AT SCALE
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#0B1F17]">
-              Trusted By Leading Schools &amp; Organizations
+              Trusted by Growing Businesses &amp; Organizations
             </h2>
             <p className="text-[#4B5563] text-sm sm:text-base max-w-xl mx-auto mt-2">
-              Over 25,000+ student terminal reports and multi-tenant operations computed across our partner network.
+              Powering over 25,000 automated records, reports, and daily workflows across our client network.
             </p>
           </div>
 
@@ -1280,19 +1280,19 @@ export function App() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
             <div className="bg-white border border-slate-200 rounded-xl p-5 text-center shadow-xs">
               <div className="text-2xl sm:text-3xl font-extrabold font-display text-[#093824]">25,000+</div>
-              <div className="text-xs text-[#4B5563] mt-1 font-semibold">Reports Computed</div>
+              <div className="text-xs text-[#4B5563] mt-1 font-semibold">Records &amp; Reports Processed</div>
             </div>
             <div className="bg-white border border-slate-200 rounded-xl p-5 text-center shadow-xs">
               <div className="text-2xl sm:text-3xl font-extrabold font-display text-[#093824]">100%</div>
-              <div className="text-xs text-[#4B5563] mt-1 font-semibold">Arithmetic Accuracy</div>
+              <div className="text-xs text-[#4B5563] mt-1 font-semibold">Data Accuracy</div>
             </div>
             <div className="bg-white border border-slate-200 rounded-xl p-5 text-center shadow-xs">
-              <div className="text-2xl sm:text-3xl font-extrabold font-display text-[#093824]">&lt; 4 Hours</div>
-              <div className="text-xs text-[#4B5563] mt-1 font-semibold">Support Resolution</div>
+              <div className="text-2xl sm:text-3xl font-extrabold font-display text-[#093824]">&lt; 4 Hrs</div>
+              <div className="text-xs text-[#4B5563] mt-1 font-semibold">Business-Hour Response</div>
             </div>
             <div className="bg-white border border-slate-200 rounded-xl p-5 text-center shadow-xs">
               <div className="text-2xl sm:text-3xl font-extrabold font-display text-[#093824]">NDPA</div>
-              <div className="text-xs text-[#4B5563] mt-1 font-semibold">Statutory Compliant</div>
+              <div className="text-xs text-[#4B5563] mt-1 font-semibold">Data Compliant</div>
             </div>
           </div>
 
