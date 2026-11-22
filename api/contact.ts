@@ -144,22 +144,33 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
                 
                 <!-- Brand Header Lockup -->
                 <tr>
-                  <td style="background-color: #093824; padding: 32px 36px; border-bottom: 4px solid #10B981;">
+                  <td style="background-color: #093824; padding: 28px 36px 24px 36px; border-bottom: 4px solid #10B981; text-align: center;">
                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td>
+                        <td align="center">
+                          <!-- Official Africa Logo Lockup -->
+                          <div style="background-color: #FFFFFF; display: inline-block; padding: 8px 12px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);">
+                            <img 
+                              src="https://raw.githubusercontent.com/NentyJnr/neotro-web/main/public/logos/neotro-official-logo.jpg" 
+                              alt="Neotro Ltd Logo" 
+                              width="88" 
+                              height="88" 
+                              style="display: block; width: 88px; height: 88px; object-fit: contain; border: 0;"
+                            />
+                          </div>
+                          
                           <!-- Wordmark & Tagline -->
-                          <div style="font-size: 22px; font-weight: 800; letter-spacing: 2px; color: #FFFFFF; text-transform: uppercase;">
-                            NEOTRO <span style="font-size: 14px; font-weight: 400; color: #A7F3D0; letter-spacing: 0;">Ltd</span>
+                          <div style="margin-top: 12px; font-size: 20px; font-weight: 800; letter-spacing: 2px; color: #FFFFFF; text-transform: uppercase;">
+                            NEOTRO <span style="font-size: 13px; font-weight: 400; color: #A7F3D0; letter-spacing: 0;">Ltd</span>
                           </div>
                           <div style="font-size: 12px; color: #D1FAE5; margin-top: 4px; font-weight: 500;">
-                            Enterprise Digital Infrastructure &bull; Sovereign Software
+                            Enterprise Digital Infrastructure &bull; Sovereign Software Systems
                           </div>
-                        </td>
-                        <td align="right" valign="top">
-                          <span style="display: inline-block; background-color: rgba(16, 185, 129, 0.2); border: 1px solid rgba(52, 211, 153, 0.4); color: #A7F3D0; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 6px 12px; border-radius: 9999px;">
-                            Client Lead
-                          </span>
+                          <div style="margin-top: 10px;">
+                            <span style="display: inline-block; background-color: rgba(16, 185, 129, 0.25); border: 1px solid rgba(52, 211, 153, 0.5); color: #A7F3D0; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 9999px;">
+                              ● New Client Lead
+                            </span>
+                          </div>
                         </td>
                       </tr>
                     </table>
