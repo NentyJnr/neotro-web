@@ -1191,7 +1191,7 @@ export function App() {
               Why Organizations Choose Neotro
             </h2>
             <p className="text-[#4B5563] text-base max-w-[620px] mt-3">
-              We replace generic, one-size-fits-all software with institutional platforms engineered around specific Nigerian regulatory standards and workflows.
+              We replace generic software with practical platforms built for how Nigerian schools, construction firms, and businesses actually work.
             </p>
           </div>
 
@@ -1205,14 +1205,14 @@ export function App() {
                   <GraduationCap className="w-6 h-6 text-[#059669]" />
                 </div>
                 <h3 className="text-xl font-bold text-[#0B1F17] mb-3 font-display">
-                  Institutional Specialization
+                  Built for Local Workflows
                 </h3>
                 <p className="text-sm leading-relaxed text-[#4B5563]">
-                  Built specifically for West African schools, QS consultancies, and enterprises—tailored to local grading systems (WAEC/NERDC standards), construction rate analyses, and Nigerian business practices.
+                  Designed for schools, quantity surveying firms, and growing businesses—supporting local grading standards (WAEC/NERDC), construction cost estimation, and everyday Nigerian operations.
                 </p>
               </div>
               <div className="pt-6 border-t border-slate-100 mt-6 text-xs font-semibold text-[#093824]">
-                Local Curriculum &amp; BESMM4 Aligned
+                WAEC, NERDC &amp; BESMM4 Ready
               </div>
             </div>
 
@@ -1223,14 +1223,14 @@ export function App() {
                   <CheckCircle2 className="w-6 h-6 text-[#059669]" />
                 </div>
                 <h3 className="text-xl font-bold text-[#0B1F17] mb-3 font-display">
-                  Automated Verification Math
+                  Accurate, Automated Calculations
                 </h3>
                 <p className="text-sm leading-relaxed text-[#4B5563]">
-                  Custom computational engines guarantee arithmetic precision across terminal score summaries, GPA conversions, unit rate computations, and attendance roll-ups.
+                  Eliminate manual errors. Our systems automatically handle student report cards, GPA calculations, construction rate breakdowns, and attendance records with complete accuracy.
                 </p>
               </div>
               <div className="pt-6 border-t border-slate-100 mt-6 text-xs font-semibold text-[#093824]">
-                Zero Calculation Discrepancies
+                Zero Manual Errors
               </div>
             </div>
 
@@ -1241,14 +1241,14 @@ export function App() {
                   <ShieldCheck className="w-6 h-6 text-[#059669]" />
                 </div>
                 <h3 className="text-xl font-bold text-[#0B1F17] mb-3 font-display">
-                  Dedicated Support SLA
+                  Fast, Reliable Support
                 </h3>
                 <p className="text-sm leading-relaxed text-[#4B5563]">
-                  Direct access to dedicated software engineers with guaranteed sub-4-hour turnaround on operational inquiries, automated daily backups, and continuous security patching.
+                  Get direct help from our support team within 4 business hours, backed by automated daily backups and ongoing security updates to keep your data safe.
                 </p>
               </div>
               <div className="pt-6 border-t border-slate-100 mt-6 text-xs font-semibold text-[#093824]">
-                Rapid Engineering Response
+                4-Hour Business Response
               </div>
             </div>
 
