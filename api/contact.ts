@@ -96,7 +96,8 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
       process.env.resend_api_key ||
       process.env.RESEND_KEY;
     const notificationEmail = process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com';
-    const fromEmail = process.env.FROM_EMAIL || 'Neotro Portal <onboarding@resend.dev>';
+    // Now that neotroltd.com is verified in Resend, send from the verified domain
+    const fromEmail = process.env.FROM_EMAIL || 'Neotro Portal <inquiry@neotroltd.com>';
 
     if (!resendApiKey) {
       console.warn('RESEND_API_KEY environment variable is not configured.');
