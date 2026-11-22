@@ -1411,10 +1411,10 @@ export function App() {
                   DIRECT CHANNELS
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-bold font-display text-[#0B1F17] leading-tight mb-3">
-                  Reach our engineering team directly
+                  Connect with our team directly
                 </h3>
                 <p className="text-[#4B5563] text-sm leading-relaxed">
-                  Have an urgent deployment or institutional RFP? Use our direct channels for immediate communication with leadership and senior engineering.
+                  Have an urgent project, partnership inquiry, or proposal request? Use our direct channels to connect with our leadership and client solutions team.
                 </p>
               </div>
 
@@ -1455,7 +1455,7 @@ export function App() {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] text-slate-500 font-medium uppercase tracking-wider block">Office Headquarters</span>
+                    <span className="text-[11px] text-slate-500 font-medium uppercase tracking-wider block">Office Address</span>
                     <span className="text-slate-800 font-medium text-sm">18 Kokoro Street, Awoyaya, Ajah, Lagos, Nigeria</span>
                   </div>
                 </div>
@@ -1465,7 +1465,7 @@ export function App() {
               {/* SLA Response Guarantee Box */}
               <div className="p-4 rounded-xl bg-white border border-emerald-200 text-xs text-slate-600 flex items-center gap-3 shadow-xs">
                 <Clock className="w-5 h-5 text-[#059669] shrink-0" />
-                <span><strong className="text-[#0B1F17] font-semibold">Fast Response Guarantee:</strong> Enterprise inquiries and demo requests are reviewed within 4 business hours.</span>
+                <span><strong className="text-[#0B1F17] font-semibold">Fast Response Guarantee:</strong> All business inquiries and demo requests are reviewed within 4 business hours.</span>
               </div>
             </div>
 
