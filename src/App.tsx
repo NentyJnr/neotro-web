@@ -49,7 +49,7 @@ export function App() {
     email: '',
     phone: '',
     institution: '',
-    service: 'School management systems',
+    service: 'Custom Project Inquiry',
     message: ''
   });
 
@@ -211,7 +211,7 @@ export function App() {
       setFormSubmitted(true);
       setTimeout(() => {
         setFormSubmitted(false);
-        setFormData({ name: '', email: '', phone: '', institution: '', service: 'Neotro School Portal (Academic ERP & Result Engine)', message: '' });
+        setFormData({ name: '', email: '', phone: '', institution: '', service: 'Custom Project Inquiry', message: '' });
       }, 6000);
     } catch (err: any) {
       setSubmitError(err.message || 'An error occurred while transmitting your inquiry. Please reach out to info@neotroltd.com.');
@@ -1548,30 +1548,14 @@ export function App() {
 
                   <div>
                     <label className="block text-xs font-bold text-[#0B1F17] mb-1.5 uppercase tracking-wider">
-                      Primary System Interest <span className="text-rose-500">*</span>
-                    </label>
-                    <select
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg bg-[#F7F9F8] border border-slate-300 text-[#0B1F17] text-sm focus:border-[#093824] focus:outline-none transition-colors cursor-pointer"
-                    >
-                      <option value="School management systems">Neotro School Portal (Academic ERP &amp; Result Engine)</option>
-                      <option value="Construction & QS technology">Neoppe (Quantity Surveying &amp; Takeoff Engine)</option>
-                      <option value="Church & institution management">Lecturra (AI Assessment &amp; Question Generator)</option>
-                      <option value="Attendance & ID systems">Neotro Attendance (RFID &amp; Biometric Check-in)</option>
-                      <option value="Business portals">Custom Enterprise Portal &amp; Workflow System</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-[#0B1F17] mb-1.5 uppercase tracking-wider">
-                      Operational Challenge / Requirements
+                      What would you like to build? / Project Requirements <span className="text-rose-500">*</span>
                     </label>
                     <textarea
-                      rows={3}
+                      required
+                      rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell us about your current operational challenge, student volume, or project timeline..."
+                      placeholder="Tell us what you want to build or your project requirements (e.g. school portal, biometric attendance, custom takeoff system, or workflow software)..."
                       className="w-full px-4 py-3 rounded-lg bg-[#F7F9F8] border border-slate-300 text-[#0B1F17] text-sm focus:border-[#093824] focus:outline-none transition-colors resize-none placeholder:text-slate-400"
                     />
                   </div>
@@ -1606,13 +1590,10 @@ export function App() {
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin text-white" />
-                        <span>Transmitting Inquiry...</span>
+                        <span>Submitting...</span>
                       </>
                     ) : (
-                      <>
-                        <span>Submit Inquiry / Schedule Consultation</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </>
+                      <span>Submit</span>
                     )}
                   </button>
                 </form>

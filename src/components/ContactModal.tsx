@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { X, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
-import type { ContactFormData, SectorType } from '../types';
+import { X, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import type { ContactFormData } from '../types';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -140,42 +140,25 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Organization / Institution Name</label>
-                  <input
-                    type="text"
-                    value={formData.organization}
-                    onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                    placeholder="School, Church, or Firm"
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-amber-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Primary Sector</label>
-                  <select
-                    value={formData.sector}
-                    onChange={(e) => setFormData({ ...formData, sector: e.target.value as SectorType })}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-amber-500"
-                  >
-                    <option value="school">School Management</option>
-                    <option value="attendance">Attendance &amp; ID Systems</option>
-                    <option value="church">Church &amp; Institution</option>
-                    <option value="construction">Construction &amp; QS Tech</option>
-                    <option value="business">Business Portals</option>
-                  </select>
-                </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Organization / Institution Name</label>
+                <input
+                  type="text"
+                  value={formData.organization}
+                  onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
+                  placeholder="School, Church, or Firm"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-amber-500"
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">What real problem are you trying to solve? *</label>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">What would you like to build? / Project Requirements *</label>
                 <textarea
                   required
                   rows={4}
                   value={formData.problemDescription}
                   onChange={(e) => setFormData({ ...formData, problemDescription: e.target.value })}
-                  placeholder="Describe how your team currently handles this work (e.g. paper registers, re-typing spreadsheets, manual check-ins)..."
+                  placeholder="Describe what you want to build or the problem your team is solving (e.g. paper registers, re-typing spreadsheets, manual check-ins, or bespoke portal)..."
                   className="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-amber-500 resize-none"
                 />
               </div>
@@ -203,13 +186,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   {loading ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
-                      <span>Sending...</span>
+                      <span>Submitting...</span>
                     </>
                   ) : (
-                    <>
-                      <span>Submit Inquiry</span>
-                      <Send className="w-4 h-4" />
-                    </>
+                    <span>Submit</span>
                   )}
                 </button>
               </div>

@@ -233,18 +233,19 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
                       </tr>
                     </table>
 
-                    <!-- Primary Interest Badge Box -->
+                    <!-- Primary Interest Badge Box (if specified) -->
+                    ${(service && service !== 'General Inquiry' && service !== 'Custom Project Inquiry') ? `
                     <div style="margin-bottom: 24px;">
                       <div style="font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Primary Solution / Platform</div>
                       <div style="display: inline-block; background-color: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 8px;">
                         ${escapeHtml(service)}
                       </div>
-                    </div>
+                    </div>` : ''}
 
                     <!-- Requirements / Challenge Box -->
                     ${message ? `
                     <div style="margin-bottom: 28px;">
-                      <div style="font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Operational Challenge &amp; Project Scope</div>
+                      <div style="font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">What Client Wants to Build / Project Scope</div>
                       <div style="background-color: #F8FAFC; border-left: 4px solid #059669; border-top: 1px solid #E2E8F0; border-right: 1px solid #E2E8F0; border-bottom: 1px solid #E2E8F0; border-radius: 0 8px 8px 0; padding: 18px 20px; font-size: 14px; line-height: 1.6; color: #334155; white-space: pre-wrap;">
 ${escapeHtml(message)}
                       </div>
@@ -291,6 +292,10 @@ ${escapeHtml(message)}
       </html>
     `;
 
+    const emailSubject = (service && service !== 'General Inquiry' && service !== 'Custom Project Inquiry')
+      ? `[Neotro Inquiry] ${service} - ${name}${institution ? ` (${institution})` : ''}`
+      : `[Neotro Inquiry] ${name}${institution ? ` (${institution})` : ''} - Project Requirements`;
+
     // Dispatch via Resend REST API
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -302,7 +307,7 @@ ${escapeHtml(message)}
         from: fromEmail,
         to: [notificationEmail],
         reply_to: email,
-        subject: `[Neotro Inquiry] ${service} - ${name}${institution ? ` (${institution})` : ''}`,
+        subject: emailSubject,
         html: htmlEmail
       })
     });
