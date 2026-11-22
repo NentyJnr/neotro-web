@@ -197,9 +197,14 @@ export function App() {
         body: JSON.stringify(formData)
       });
 
-      const result = await response.json().catch(() => ({}));
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        throw new Error('The /api/contact endpoint is not active or returned HTML. Please ensure the latest Vercel deployment with serverless functions has completed.');
+      }
 
-      if (!response.ok) {
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
         throw new Error(result.message || 'Failed to dispatch inquiry. Please email info@neotroltd.com directly.');
       }
 

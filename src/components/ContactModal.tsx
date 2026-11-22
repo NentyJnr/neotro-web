@@ -49,9 +49,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         })
       });
 
-      const resData = await response.json().catch(() => ({}));
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        throw new Error('The /api/contact endpoint is not active or returned HTML. Please ensure the latest Vercel deployment has finished.');
+      }
 
-      if (!response.ok) {
+      const resData = await response.json();
+
+      if (!response.ok || !resData.success) {
         throw new Error(resData.message || 'Failed to dispatch inquiry. Please email info@neotroltd.com.');
       }
 
