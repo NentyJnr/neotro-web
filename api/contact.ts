@@ -197,8 +197,49 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
     });
 
     if (!response.ok) {
-      const errorJson = await response.json().catch(() => ({}));
-      console.error('Resend delivery failure:', errorJson);
+      const errorJson: any = await response.json().catch(() => ({}));
+      console.error('Resend delivery initial attempt:', errorJson);
+
+      // Graceful fallback for Resend Sandbox mode:
+      // Resend trial accounts can only send to the registered account email until domain is verified.
+      const match = errorJson?.message?.match(/to your own email address \(([^)]+)\)/i);
+      if (response.status === 403 && match && match[1]) {
+        const allowedEmail = match[1];
+        console.warn(`Resend sandbox restriction active. Retrying delivery to registered account owner: ${allowedEmail}`);
+
+        const sandboxNotice = `
+          <div style="background-color: #fef3c7; border: 1px solid #f59e0b; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 13px; color: #92400e; font-family: sans-serif;">
+            <strong>⚠️ Resend Sandbox Mode Active:</strong> This inquiry was routed to your registered Resend account (<strong>${escapeHtml(allowedEmail)}</strong>). To receive directly at <strong>${escapeHtml(notificationEmail)}</strong>, verify your domain at <a href="https://resend.com/domains" style="color: #b45309; font-weight: bold;">resend.com/domains</a>.
+          </div>
+        `;
+
+        const retryResponse = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            from: fromEmail,
+            to: [allowedEmail],
+            reply_to: email,
+            subject: `[Neotro Inquiry] ${service} - ${name}${institution ? ` (${institution})` : ''}`,
+            html: sandboxNotice + htmlEmail
+          })
+        });
+
+        if (retryResponse.ok) {
+          const retryData: any = await retryResponse.json().catch(() => ({}));
+          return res.status(200).json({
+            success: true,
+            message: 'Inquiry received successfully. Our team will follow up within 4 hours.',
+            id: retryData?.id,
+            deliveredTo: allowedEmail,
+            sandbox: true
+          });
+        }
+      }
+
       return res.status(502).json({
         success: false,
         message: 'Email gateway delivery failed. Please reach out to info@neotroltd.com directly.',
