@@ -1478,7 +1478,7 @@ export function App() {
                   </div>
                   <h3 className="text-2xl font-bold text-[#0B1F17] mb-2 font-display">Inquiry Received</h3>
                   <p className="text-slate-600 text-sm max-w-md mx-auto leading-relaxed">
-                    Thank you, <strong className="text-[#093824]">{formData.name}</strong>. Our institutional engineering team has received your message and will reach out via email/WhatsApp within 4 hours.
+                    Thank you, <strong className="text-[#093824]">{formData.name}</strong>. We have received your message, and a member of our team will reach out via email or WhatsApp within 4 business hours.
                   </p>
                 </div>
               ) : (

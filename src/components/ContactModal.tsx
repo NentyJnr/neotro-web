@@ -200,9 +200,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             <div className="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-7 h-7" />
             </div>
-            <h3 className="font-display text-2xl font-bold text-white">Inquiry Received!</h3>
+            <h3 className="font-display text-2xl font-bold text-white">Inquiry Received</h3>
             <p className="text-slate-300 text-sm max-w-md mx-auto">
-              Thank you, <strong className="text-amber-400">{formData.name}</strong>. Our team will review your project requirements and reach out via email or phone within 24 hours.
+              Thank you, <strong className="text-amber-400">{formData.name}</strong>. We have received your message, and a member of our team will reach out via email or WhatsApp within 4 business hours.
             </p>
             <div className="pt-4">
               <button
