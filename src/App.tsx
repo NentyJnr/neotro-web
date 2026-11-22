@@ -17,8 +17,6 @@ import {
   X,
   Star,
   Clock,
-  MessageSquare,
-  Briefcase,
   HardHat,
   Globe,
   Loader2,
@@ -1389,10 +1387,10 @@ export function App() {
             </button>
 
             <button
-              onClick={() => scrollToContactElement('contact-options')}
+              onClick={() => scrollToContactElement('direct-channels')}
               className="bg-white hover:bg-slate-50 text-[#0B1F17] border border-slate-300 font-semibold text-sm sm:text-base px-6 py-3.5 rounded-lg shadow-xs transition-all cursor-pointer active:scale-95"
             >
-              Contact Options
+              Direct Channels
             </button>
           </div>
 
@@ -1601,95 +1599,6 @@ export function App() {
             </div>
 
           </div>
-        </div>
-
-        {/* ----------------------------------------------------------------------- */}
-        {/* CONTACT OPTIONS: REACH THE RIGHT TEAM (BELOW ENQUIRY SECTION) */}
-        {/* ----------------------------------------------------------------------- */}
-        <div id="contact-options" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28 relative z-10 border-t border-[#E5E7EB] pt-16 scroll-mt-24">
-          
-          <div className="mb-10 text-left">
-            <span className="text-xs font-bold text-[#059669] font-mono tracking-wider uppercase block mb-2">
-              CONTACT OPTIONS
-            </span>
-            <h3 className="text-3xl sm:text-4xl font-bold font-display text-[#0B1F17] tracking-tight mb-2">
-              Reach The Right Team
-            </h3>
-            <p className="text-[#4B5563] text-sm sm:text-base">
-              Choose the conversation that best matches what you need from Neotro.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            {/* Card 1: General Enquiries */}
-            <div className="bg-white border border-slate-200/90 rounded-2xl p-7 shadow-xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group">
-              <div>
-                <div className="w-11 h-11 rounded-lg bg-[#DCFCE7] text-[#059669] flex items-center justify-center mb-6 border border-[#BBF7D0] group-hover:scale-105 transition-transform">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <h4 className="text-xl font-bold font-display text-[#0B1F17] mb-3">
-                  General Enquiries
-                </h4>
-                <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
-                  Speak with our team about Neotro, partnerships, and enterprise technology needs.
-                </p>
-              </div>
-              <a 
-                href="mailto:info@neotroltd.com"
-                className="text-sm font-bold text-[#0B1F17] group-hover:text-[#093824] inline-flex items-center gap-1.5 transition-colors pt-3 border-t border-slate-100"
-              >
-                <span>info@neotroltd.com</span>
-                <ArrowRight className="w-4 h-4 text-[#059669] group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-
-            {/* Card 2: Business Conversations */}
-            <div className="bg-white border border-slate-200/90 rounded-2xl p-7 shadow-xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group">
-              <div>
-                <div className="w-11 h-11 rounded-lg bg-[#DCFCE7] text-[#059669] flex items-center justify-center mb-6 border border-[#BBF7D0] group-hover:scale-105 transition-transform">
-                  <MessageSquare className="w-5 h-5" />
-                </div>
-                <h4 className="text-xl font-bold font-display text-[#0B1F17] mb-3">
-                  Business Conversations
-                </h4>
-                <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
-                  Start a conversation about solutions, implementation, or digital transformation.
-                </p>
-              </div>
-              <a 
-                href="mailto:info@neotroltd.com"
-                className="text-sm font-bold text-[#0B1F17] group-hover:text-[#093824] inline-flex items-center gap-1.5 transition-colors pt-3 border-t border-slate-100"
-              >
-                <span>info@neotroltd.com</span>
-                <ArrowRight className="w-4 h-4 text-[#059669] group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-
-            {/* Card 3: Careers */}
-            <div className="bg-white border border-slate-200/90 rounded-2xl p-7 shadow-xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group">
-              <div>
-                <div className="w-11 h-11 rounded-lg bg-[#DCFCE7] text-[#059669] flex items-center justify-center mb-6 border border-[#BBF7D0] group-hover:scale-105 transition-transform">
-                  <Briefcase className="w-5 h-5" />
-                </div>
-                <h4 className="text-xl font-bold font-display text-[#0B1F17] mb-3">
-                  Careers
-                </h4>
-                <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
-                  Reach our people team about careers and internships.
-                </p>
-              </div>
-              <a 
-                href="mailto:info@neotroltd.com"
-                className="text-sm font-bold text-[#0B1F17] group-hover:text-[#093824] inline-flex items-center gap-1.5 transition-colors pt-3 border-t border-slate-100"
-              >
-                <span>info@neotroltd.com</span>
-                <ArrowRight className="w-4 h-4 text-[#059669] group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-
-          </div>
-
         </div>
       </section>
 
