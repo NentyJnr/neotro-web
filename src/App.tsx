@@ -14,6 +14,7 @@ import {
   ArrowRight,
   GraduationCap,
   ShieldCheck,
+  Layers,
   X,
   Star,
   Clock,
@@ -1191,42 +1192,42 @@ export function App() {
               Why Organizations Choose Neotro
             </h2>
             <p className="text-[#4B5563] text-base max-w-[620px] mt-3">
-              We replace generic software with practical platforms built for how Nigerian schools, construction firms, and businesses actually work.
+              We replace rigid, one-size-fits-all software with custom platforms built around how your organization actually operates.
             </p>
           </div>
 
           {/* 3-Column Differentiated Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            {/* Card 1: Institutional Domain Specialization */}
+            {/* Card 1: Built Around Your Workflows */}
             <div className="bg-white border border-[#D1D5DB] rounded-xl p-8 hover:border-[#059669] hover:shadow-md transition-all flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-xl bg-[#DCFCE7] text-[#093824] flex items-center justify-center mb-6">
-                  <GraduationCap className="w-6 h-6 text-[#059669]" />
+                  <Layers className="w-6 h-6 text-[#059669]" />
                 </div>
                 <h3 className="text-xl font-bold text-[#0B1F17] mb-3 font-display">
-                  Built for Local Workflows
+                  Built Around Your Workflows
                 </h3>
                 <p className="text-sm leading-relaxed text-[#4B5563]">
-                  Designed for schools, quantity surveying firms, and growing businesses—supporting local grading standards (WAEC/NERDC), construction cost estimation, and everyday Nigerian operations.
+                  Whether you run a growing business, an enterprise, or an institution, we tailor every platform to fit your exact daily operations, local requirements, and long-term goals.
                 </p>
               </div>
               <div className="pt-6 border-t border-slate-100 mt-6 text-xs font-semibold text-[#093824]">
-                WAEC, NERDC &amp; BESMM4 Ready
+                Tailored to Any Industry
               </div>
             </div>
 
-            {/* Card 2: Automated Verification Pipelines */}
+            {/* Card 2: Reliable Automation & Accuracy */}
             <div className="bg-white border border-[#D1D5DB] rounded-xl p-8 hover:border-[#059669] hover:shadow-md transition-all flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-xl bg-[#DCFCE7] text-[#093824] flex items-center justify-center mb-6">
                   <CheckCircle2 className="w-6 h-6 text-[#059669]" />
                 </div>
                 <h3 className="text-xl font-bold text-[#0B1F17] mb-3 font-display">
-                  Accurate, Automated Calculations
+                  Reliable Automation &amp; Accuracy
                 </h3>
                 <p className="text-sm leading-relaxed text-[#4B5563]">
-                  Eliminate manual errors. Our systems automatically handle student report cards, GPA calculations, construction rate breakdowns, and attendance records with complete accuracy.
+                  Eliminate repetitive manual work and human error. Our systems automate your core processes—from data tracking and reporting to billing and record management—with complete precision.
                 </p>
               </div>
               <div className="pt-6 border-t border-slate-100 mt-6 text-xs font-semibold text-[#093824]">
@@ -1234,7 +1235,7 @@ export function App() {
               </div>
             </div>
 
-            {/* Card 3: Enterprise Engineering & Support SLA */}
+            {/* Card 3: Fast, Reliable Support */}
             <div className="bg-white border border-[#D1D5DB] rounded-xl p-8 hover:border-[#059669] hover:shadow-md transition-all flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-xl bg-[#DCFCE7] text-[#093824] flex items-center justify-center mb-6">
@@ -1244,7 +1245,7 @@ export function App() {
                   Fast, Reliable Support
                 </h3>
                 <p className="text-sm leading-relaxed text-[#4B5563]">
-                  Get direct help from our support team within 4 business hours, backed by automated daily backups and ongoing security updates to keep your data safe.
+                  Get direct help from our support team within 4 business hours, backed by automated daily backups and continuous security updates to keep your operations running smoothly.
                 </p>
               </div>
               <div className="pt-6 border-t border-slate-100 mt-6 text-xs font-semibold text-[#093824]">
