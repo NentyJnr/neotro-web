@@ -186,11 +186,11 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
       });
     }
 
-    const resData = await response.json();
+    const resData: any = await response.json().catch(() => ({}));
     return res.status(200).json({
       success: true,
       message: 'Inquiry received successfully. Our team will follow up within 4 hours.',
-      id: resData.id
+      id: resData?.id
     });
   } catch (error: any) {
     console.error('Unhandled API exception:', error);
