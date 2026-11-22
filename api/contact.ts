@@ -39,10 +39,17 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
 
   // Health check & diagnostic status via GET
   if (req.method === 'GET') {
+    const hasKey = Boolean(
+      process.env.RESEND_API_KEY ||
+      process.env.resend_Api_key ||
+      process.env.resend_api_key ||
+      process.env.RESEND_KEY
+    );
+
     return res.status(200).json({
       status: 'active',
       service: 'Neotro Ltd Contact API',
-      resendConfigured: Boolean(process.env.RESEND_API_KEY),
+      resendConfigured: hasKey,
       recipient: process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com',
       timestamp: new Date().toISOString()
     });
@@ -82,8 +89,12 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
       });
     }
 
-    // Email Configuration
-    const resendApiKey = process.env.RESEND_API_KEY;
+    // Email Configuration (support both standard RESEND_API_KEY and mixed-case resend_Api_key)
+    const resendApiKey =
+      process.env.RESEND_API_KEY ||
+      process.env.resend_Api_key ||
+      process.env.resend_api_key ||
+      process.env.RESEND_KEY;
     const notificationEmail = process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com';
     const fromEmail = process.env.FROM_EMAIL || 'Neotro Portal <onboarding@resend.dev>';
 

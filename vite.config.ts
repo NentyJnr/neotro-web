@@ -88,8 +88,9 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   // Populate process.env for local development with Vite
-  if (env.RESEND_API_KEY && !process.env.RESEND_API_KEY) {
-    process.env.RESEND_API_KEY = env.RESEND_API_KEY;
+  const apiKey = env.RESEND_API_KEY || env.resend_Api_key || env.resend_api_key;
+  if (apiKey && !process.env.RESEND_API_KEY) {
+    process.env.RESEND_API_KEY = apiKey;
   }
   if (env.NOTIFICATION_EMAIL && !process.env.NOTIFICATION_EMAIL) {
     process.env.NOTIFICATION_EMAIL = env.NOTIFICATION_EMAIL;
