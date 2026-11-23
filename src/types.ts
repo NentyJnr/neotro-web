@@ -34,3 +34,34 @@ export interface ContactFormData {
   sector: SectorType;
   problemDescription: string;
 }
+
+export type JobDepartment = 'all' | 'Engineering' | 'Product & Design' | 'Client Solutions' | 'Operations';
+
+export interface JobOpening {
+  id: string;
+  title: string;
+  department: 'Engineering' | 'Product & Design' | 'Client Solutions' | 'Operations';
+  location: string;
+  type: 'Full-time' | 'Contract' | 'Internship';
+  experienceLevel: 'Entry' | 'Mid-Level' | 'Senior' | 'Lead';
+  summary: string;
+  responsibilities: string[];
+  requirements: string[];
+  niceToHave?: string[];
+  techStack?: string[];
+  isOpen: boolean;
+  postedDate: string;
+}
+
+export interface JobApplicationPayload {
+  jobId: string;
+  jobTitle: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  experienceLevel: string;
+  portfolioUrl?: string;
+  resumeUrl: string;
+  coverNote?: string;
+  website_hp?: string;
+}

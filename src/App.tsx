@@ -4,6 +4,7 @@ import { AdminModal } from './components/AdminModal';
 import { NeotroLogo } from './components/NeotroLogo';
 import { AfricaMotionMap } from './components/AfricaMotionMap';
 import { DataProtectionPolicyPage } from './components/DataProtectionPolicyPage';
+import { CareersPage } from './components/CareersPage';
 import { INITIAL_PROJECTS } from './data/initialData';
 import type { Project } from './types';
 import { 
@@ -33,6 +34,7 @@ export function App() {
   const [adminModalOpen, setAdminModalOpen] = useState(false);
   const [privacyModalOpen, setPrivacyModalOpen] = useState<'privacy' | 'terms' | null>(null);
   const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false);
+  const [isCareersOpen, setIsCareersOpen] = useState(false);
 
   // Admin Project state
   const [projects, setProjects] = useState<Project[]>(() => {
@@ -81,7 +83,7 @@ export function App() {
     return () => observer.disconnect();
   }, []);
 
-  // Listen for direct URL navigation to /admin, /privacy-policy, /data-protection-policy, etc.
+  // Listen for direct URL navigation to /admin, /privacy-policy, /data-protection-policy, /careers, etc.
   useEffect(() => {
     const handleRouteChange = () => {
       const path = window.location.pathname.toLowerCase().replace(/\/+$/, '');
@@ -92,6 +94,23 @@ export function App() {
         setAdminModalOpen(true);
       } else {
         setAdminModalOpen(false);
+      }
+
+      // Careers route check
+      if (
+        path === '/careers' ||
+        path === '/career' ||
+        path === '/jobs' ||
+        path === '/openings' ||
+        hash === '#careers' ||
+        hash === '#/careers' ||
+        hash === '#jobs' ||
+        hash === '#/jobs'
+      ) {
+        setIsCareersOpen(true);
+        setIsPrivacyPolicyOpen(false);
+      } else {
+        setIsCareersOpen(false);
       }
 
       // Data protection policy route check
@@ -127,24 +146,49 @@ export function App() {
   useEffect(() => {
     if (isPrivacyPolicyOpen) {
       document.title = 'Data Protection & Privacy Policy — Neotro Ltd';
+    } else if (isCareersOpen) {
+      document.title = 'Careers & Openings — Neotro Ltd';
     } else {
       document.title = 'Neotro Ltd — Intelligent Software Systems & Digital Portals for Nigerian Institutions';
     }
-  }, [isPrivacyPolicyOpen]);
+  }, [isPrivacyPolicyOpen, isCareersOpen]);
 
   const handleOpenPrivacyPolicy = (e?: React.MouseEvent) => {
     if (e) e.preventDefault();
     setIsPrivacyPolicyOpen(true);
+    setIsCareersOpen(false);
     window.history.pushState(null, '', '/data-protection-policy');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenCareers = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    setIsCareersOpen(true);
+    setIsPrivacyPolicyOpen(false);
+    window.history.pushState(null, '', '/careers');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBackToSite = () => {
     setIsPrivacyPolicyOpen(false);
+    setIsCareersOpen(false);
     const path = window.location.pathname.toLowerCase().replace(/\/+$/, '');
-    if (path === '/data-protection-policy' || path === '/privacy-policy' || path === '/privacy') {
+    if (
+      path === '/data-protection-policy' ||
+      path === '/privacy-policy' ||
+      path === '/privacy' ||
+      path === '/careers' ||
+      path === '/career' ||
+      path === '/jobs' ||
+      path === '/openings'
+    ) {
       window.history.pushState(null, '', '/');
-    } else if (window.location.hash.includes('privacy') || window.location.hash.includes('data-protection')) {
+    } else if (
+      window.location.hash.includes('privacy') ||
+      window.location.hash.includes('data-protection') ||
+      window.location.hash.includes('career') ||
+      window.location.hash.includes('job')
+    ) {
       window.history.pushState(null, '', window.location.pathname);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -305,6 +349,23 @@ export function App() {
     }
   ];
 
+  if (isCareersOpen) {
+    return (
+      <div className="w-full bg-[#F7F9F8] text-[#0B1F17] font-sans relative selection:bg-[#BBF7D0] selection:text-[#093824] min-h-screen">
+        <CareersPage onBack={handleBackToSite} />
+        <AdminModal
+          isOpen={adminModalOpen}
+          onClose={handleCloseAdminModal}
+          projects={projects}
+          onAddProject={(p) => handleSaveProjects([p, ...projects])}
+          onUpdateProject={(p) => handleSaveProjects(projects.map(item => item.id === p.id ? p : item))}
+          onDeleteProject={(id) => handleSaveProjects(projects.filter(item => item.id !== id))}
+          onResetProjects={() => handleSaveProjects(INITIAL_PROJECTS)}
+        />
+      </div>
+    );
+  }
+
   if (isPrivacyPolicyOpen) {
     return (
       <div className="w-full bg-[#F7F9F8] text-[#0B1F17] font-sans relative selection:bg-[#BBF7D0] selection:text-[#093824] min-h-screen">
@@ -355,13 +416,28 @@ export function App() {
                 {item.label}
               </button>
             ))}
+            <button
+              onClick={handleOpenCareers}
+              className="transition-colors py-1 cursor-pointer text-[#4B5563] hover:text-[#093824] inline-flex items-center gap-1.5"
+            >
+              <span>Careers</span>
+              <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-emerald-100 text-emerald-800">
+                Hiring
+              </span>
+            </button>
           </nav>
 
           {/* Right Action CTA: Talk To Our Team */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleOpenCareers}
+              className="md:hidden text-xs font-semibold text-[#093824] px-2.5 py-1.5 rounded-md hover:bg-slate-100 transition-colors cursor-pointer"
+            >
+              Careers
+            </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="bg-white hover:bg-slate-50 text-[#0B1F17] font-semibold text-sm rounded-lg px-4 sm:px-5 py-2 sm:py-2.5 border border-slate-200/90 hover:border-slate-300 shadow-xs hover:shadow-sm transition-all inline-flex items-center justify-center cursor-pointer active:scale-95 whitespace-nowrap"
+              className="bg-white hover:bg-slate-50 text-[#0B1F17] font-semibold text-xs sm:text-sm rounded-lg px-3.5 sm:px-5 py-2 sm:py-2.5 border border-slate-200/90 hover:border-slate-300 shadow-xs hover:shadow-sm transition-all inline-flex items-center justify-center cursor-pointer active:scale-95 whitespace-nowrap"
             >
               Talk To Our Team
             </button>
@@ -1686,6 +1762,14 @@ export function App() {
                 <li>
                   <button onClick={() => scrollToSection('about')} className="hover:text-white transition-colors cursor-pointer">
                     About us
+                  </button>
+                </li>
+                <li>
+                  <button onClick={handleOpenCareers} className="hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1.5">
+                    <span>Careers</span>
+                    <span className="px-1.5 py-0.2 text-[9px] font-bold rounded bg-emerald-700/60 text-emerald-200">
+                      Hiring
+                    </span>
                   </button>
                 </li>
                 <li>

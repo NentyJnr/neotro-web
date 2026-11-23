@@ -99,18 +99,32 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
       });
     }
 
-    const name = String(body.name || '').trim();
+    const isCareer = body.type === 'career_application';
+    const jobTitle = String(body.jobTitle || 'General Application').trim();
+    const experienceLevel = String(body.experienceLevel || '').trim();
+    const resumeUrl = String(body.resumeUrl || '').trim();
+    const portfolioUrl = String(body.portfolioUrl || '').trim();
+    const coverNote = String(body.coverNote || '').trim();
+
+    const name = String(body.fullName || body.name || '').trim();
     const email = String(body.email || '').trim();
     const phone = String(body.phone || '').trim();
-    const institution = String(body.institution || body.organization || body.company || '').trim();
-    const service = String(body.service || body.sector || body.systemInterest || 'General Inquiry').trim();
-    const message = String(body.message || body.problemDescription || body.requirements || '').trim();
+    const institution = isCareer ? '' : String(body.institution || body.organization || body.company || '').trim();
+    const service = isCareer ? `Career: ${jobTitle}` : String(body.service || body.sector || body.systemInterest || 'General Inquiry').trim();
+    const message = isCareer ? coverNote : String(body.message || body.problemDescription || body.requirements || '').trim();
 
     // Field Validation
     if (!name || !email) {
       return res.status(422).json({
         success: false,
-        message: 'Name and official email are required fields.'
+        message: 'Name and email are required fields.'
+      });
+    }
+
+    if (isCareer && !resumeUrl) {
+      return res.status(422).json({
+        success: false,
+        message: 'A valid Resume / CV link is required for job applications.'
       });
     }
 
@@ -190,7 +204,7 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
                           </div>
                           <div style="margin-top: 10px;">
                             <span style="display: inline-block; background-color: rgba(16, 185, 129, 0.25); border: 1px solid rgba(52, 211, 153, 0.5); color: #A7F3D0; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 9999px;">
-                              ● New Client Lead
+                              ${isCareer ? '● Job Application' : '● New Client Lead'}
                             </span>
                           </div>
                         </td>
@@ -206,24 +220,30 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
                     <!-- Intro Header -->
                     <div style="margin-bottom: 24px;">
                       <h1 style="margin: 0 0 6px 0; font-size: 22px; font-weight: 700; color: #0B1F17; letter-spacing: -0.3px;">
-                        New Institutional Consultation Request
+                        ${isCareer ? `Job Application: ${escapeHtml(jobTitle)}` : 'New Institutional Consultation Request'}
                       </h1>
                       <div style="font-size: 12px; color: #64748B;">
                         Received on ${submissionDate} (Lagos, WAT)
                       </div>
                     </div>
 
-                    <!-- Client Summary Card -->
+                    <!-- Client / Candidate Summary Card -->
                     <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; margin-bottom: 24px; overflow: hidden;">
                       <tr>
                         <td style="padding: 20px 24px; border-bottom: 1px solid #E2E8F0;">
-                          <div style="font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Contact Person</div>
+                          <div style="font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
+                            ${isCareer ? 'Candidate Name' : 'Contact Person'}
+                          </div>
                           <div style="font-size: 16px; font-weight: 700; color: #0F172A;">
                             ${escapeHtml(name)}
                           </div>
                           ${institution ? `
                           <div style="font-size: 13px; font-weight: 600; color: #059669; margin-top: 2px;">
                             ${escapeHtml(institution)}
+                          </div>` : ''}
+                          ${isCareer && experienceLevel ? `
+                          <div style="font-size: 12px; font-weight: 600; color: #059669; margin-top: 2px;">
+                            Experience Level: ${escapeHtml(experienceLevel)}
                           </div>` : ''}
                         </td>
                       </tr>
@@ -255,6 +275,20 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
                       </tr>
                     </table>
 
+                    ${isCareer ? `
+                    <!-- Candidate Resume / CV Actions -->
+                    <div style="margin-bottom: 24px;">
+                      <div style="font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Candidate Resume / Portfolio</div>
+                      <a href="${escapeHtml(resumeUrl)}" target="_blank" style="display: inline-block; background-color: #059669; color: #FFFFFF; font-size: 13px; font-weight: 700; text-decoration: none; padding: 12px 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(5, 150, 105, 0.2);">
+                        Open Candidate Resume &rarr;
+                      </a>
+                      ${portfolioUrl ? `
+                      &nbsp;&nbsp;
+                      <a href="${escapeHtml(portfolioUrl)}" target="_blank" style="display: inline-block; background-color: #FFFFFF; border: 1px solid #CBD5E1; color: #0F172A; font-size: 13px; font-weight: 600; text-decoration: none; padding: 11px 18px; border-radius: 8px;">
+                        View Portfolio / Profile &rarr;
+                      </a>` : ''}
+                    </div>
+                    ` : `
                     <!-- Primary Interest Badge Box (if specified) -->
                     ${(service && service !== 'General Inquiry' && service !== 'Custom Project Inquiry') ? `
                     <div style="margin-bottom: 24px;">
@@ -263,11 +297,14 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
                         ${escapeHtml(service)}
                       </div>
                     </div>` : ''}
+                    `}
 
-                    <!-- Requirements / Challenge Box -->
+                    <!-- Requirements / Challenge / Cover Note Box -->
                     ${message ? `
                     <div style="margin-bottom: 28px;">
-                      <div style="font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">What Client Wants to Build / Project Scope</div>
+                      <div style="font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+                        ${isCareer ? 'Candidate Cover Note / Project Background' : 'What Client Wants to Build / Project Scope'}
+                      </div>
                       <div style="background-color: #F8FAFC; border-left: 4px solid #059669; border-top: 1px solid #E2E8F0; border-right: 1px solid #E2E8F0; border-bottom: 1px solid #E2E8F0; border-radius: 0 8px 8px 0; padding: 18px 20px; font-size: 14px; line-height: 1.6; color: #334155; white-space: pre-wrap;">
 ${escapeHtml(message)}
                       </div>
@@ -314,9 +351,15 @@ ${escapeHtml(message)}
       </html>
     `;
 
-    const emailSubject = (service && service !== 'General Inquiry' && service !== 'Custom Project Inquiry')
-      ? `[Neotro Inquiry] ${service} - ${name}${institution ? ` (${institution})` : ''}`
-      : `[Neotro Inquiry] ${name}${institution ? ` (${institution})` : ''} - Project Requirements`;
+    const emailSubject = isCareer
+      ? `[Neotro Careers] Application for ${jobTitle} - ${name}`
+      : (service && service !== 'General Inquiry' && service !== 'Custom Project Inquiry')
+        ? `[Neotro Inquiry] ${service} - ${name}${institution ? ` (${institution})` : ''}`
+        : `[Neotro Inquiry] ${name}${institution ? ` (${institution})` : ''} - Project Requirements`;
+
+    const successMsg = isCareer
+      ? 'Application received successfully. Our hiring team will review your profile and reach out within 5 business days.'
+      : 'Inquiry received successfully. Our team will follow up within 4 hours.';
 
     // Dispatch via Resend REST API
     const response = await fetch('https://api.resend.com/emails', {
@@ -369,7 +412,7 @@ ${escapeHtml(message)}
             from: 'Neotro Portal <onboarding@resend.dev>',
             to: [allowedEmail],
             reply_to: email,
-            subject: `[Neotro Inquiry] ${service} - ${name}${institution ? ` (${institution})` : ''}`,
+            subject: emailSubject,
             html: sandboxNotice + htmlEmail,
           attachments: [
             {
@@ -387,7 +430,7 @@ ${escapeHtml(message)}
           const retryData: any = await retryResponse.json().catch(() => ({}));
           return res.status(200).json({
             success: true,
-            message: 'Inquiry received successfully. Our team will follow up within 4 hours.',
+            message: successMsg,
             id: retryData?.id,
             deliveredTo: allowedEmail,
             sandbox: true
@@ -405,7 +448,7 @@ ${escapeHtml(message)}
     const resData: any = await response.json().catch(() => ({}));
     return res.status(200).json({
       success: true,
-      message: 'Inquiry received successfully. Our team will follow up within 4 hours.',
+      message: successMsg,
       id: resData?.id,
       deliveredTo: notificationEmail
     });

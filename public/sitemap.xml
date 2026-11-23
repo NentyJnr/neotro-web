@@ -11,6 +11,14 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Careers & Openings (Talent Directory) -->
+  <url>
+    <loc>https://neotroltd.com/careers</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Data Protection & Privacy Policy (NDPA 2023 Aligned) -->
   <url>
     <loc>https://neotroltd.com/data-protection-policy</loc>
