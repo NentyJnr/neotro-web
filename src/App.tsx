@@ -208,10 +208,6 @@ export function App() {
       }
 
       setFormSubmitted(true);
-      setTimeout(() => {
-        setFormSubmitted(false);
-        setFormData({ name: '', email: '', phone: '', institution: '', service: 'Custom Project Inquiry', message: '' });
-      }, 6000);
     } catch (err: any) {
       setSubmitError(err.message || 'An error occurred while transmitting your inquiry. Please reach out to info@neotroltd.com.');
     } finally {
@@ -1480,12 +1476,34 @@ export function App() {
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
                   <h3 className="text-2xl font-bold text-[#0B1F17] mb-2 font-display">Inquiry Received</h3>
-                  <p className="text-slate-600 text-sm max-w-md mx-auto leading-relaxed">
+                  <p className="text-slate-600 text-sm max-w-md mx-auto leading-relaxed mb-6">
                     Thank you, <strong className="text-[#093824]">{formData.name}</strong>. We have received your message, and a member of our team will reach out via email or WhatsApp within 4 business hours.
                   </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormSubmitted(false);
+                      setFormData({ name: '', email: '', phone: '', institution: '', service: 'Custom Project Inquiry', message: '' });
+                    }}
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#093824] hover:bg-[#0D4A30] text-white text-xs font-bold transition-colors cursor-pointer shadow-xs"
+                  >
+                    Send Another Inquiry &rarr;
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleFormSubmit} className="space-y-4">
+                  {/* Honeypot field (hidden from humans, detects automated bots) */}
+                  <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                    <input
+                      type="text"
+                      name="website_hp"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={(formData as any).website_hp || ''}
+                      onChange={(e) => setFormData({ ...formData, website_hp: e.target.value } as any)}
+                    />
+                  </div>
+
                   <div className="border-b border-slate-200 pb-3 mb-2">
                     <h4 className="text-lg font-bold text-[#0B1F17] font-display">Send A Message</h4>
                     <p className="text-xs text-slate-500">Fill out your requirements below to initiate custom software scoping or a platform demo.</p>
@@ -1688,11 +1706,6 @@ export function App() {
                   <button onClick={handleOpenPrivacyPolicy} className="hover:text-white transition-colors cursor-pointer text-left">
                     Data protection policy
                   </button>
-                </li>
-                <li>
-                  <a href="/admin" onClick={(e) => { e.preventDefault(); setAdminModalOpen(true); }} className="hover:text-white transition-colors text-emerald-200/80">
-                    Admin portal
-                  </a>
                 </li>
               </ul>
             </div>
