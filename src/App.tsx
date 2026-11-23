@@ -505,7 +505,7 @@ export function App() {
                   <div className="w-7 h-7 rounded-lg bg-[#DCFCE7] text-[#093824] flex items-center justify-center font-bold">
                     <ShieldCheck className="w-4 h-4 text-[#059669]" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#0B1F17]">Enterprise Security &amp; Compliance</h3>
+                  <h3 className="text-xl font-bold text-[#0B1F17]">Security &amp; Reliability Built In</h3>
                 </div>
                 <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
                   Every platform we build follows strict security practices—combining isolated data storage, strong encryption, and full activity logs for complete accountability.
@@ -515,22 +515,22 @@ export function App() {
               {/* Concrete 4-Metric Grid */}
               <div className="grid grid-cols-2 gap-3.5 pt-2">
                 <div className="p-4 rounded-xl bg-[#F7F9F8] border border-slate-200">
-                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Uptime</div>
+                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">UPTIME</div>
                   <div className="text-2xl font-bold font-display text-[#0B1F17] mt-1">99.9%</div>
                   <span className="text-[11px] text-slate-500 block mt-0.5">Monitored 24/7</span>
                 </div>
                 <div className="p-4 rounded-xl bg-[#F7F9F8] border border-slate-200">
-                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Support Response</div>
+                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">SUPPORT RESPONSE</div>
                   <div className="text-2xl font-bold font-display text-[#0B1F17] mt-1">&lt; 4 Hrs</div>
                   <span className="text-[11px] text-slate-500 block mt-0.5">Dedicated support team</span>
                 </div>
                 <div className="p-4 rounded-xl bg-[#F7F9F8] border border-slate-200">
-                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Data Standard</div>
+                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">DATA STANDARD</div>
                   <div className="text-2xl font-bold font-display text-[#0B1F17] mt-1">NDPA</div>
                   <span className="text-[11px] text-slate-500 block mt-0.5">Nigeria Data Protection Act</span>
                 </div>
                 <div className="p-4 rounded-xl bg-[#F7F9F8] border border-slate-200">
-                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Backups</div>
+                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">BACKUPS</div>
                   <div className="text-2xl font-bold font-display text-[#0B1F17] mt-1">Daily</div>
                   <span className="text-[11px] text-slate-500 block mt-0.5">Encrypted offsite storage</span>
                 </div>
