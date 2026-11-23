@@ -467,31 +467,31 @@ export function App() {
                   ABOUT NEOTRO LTD
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#0B1F17] leading-tight mb-4">
-                  Engineering reliable software infrastructure for institutions.
+                  Building reliable software for modern organizations.
                 </h2>
                 <p className="text-[#4B5563] text-base leading-relaxed mb-6">
-                  Neotro Ltd designs and deploys robust, multi-tenant digital systems. We work closely with educational institutions, construction engineering partners, and enterprise clients to automate mission-critical operations with an audited 99.9% uptime SLA.
+                  Neotro Ltd designs and deploys scalable digital platforms for growing businesses, enterprises, and institutions—helping teams automate daily operations with dependable 99.9% uptime.
                 </p>
                 <div className="space-y-3.5">
                   <div className="flex items-start gap-3 text-sm font-semibold text-[#0B1F17]">
                     <CheckCircle2 className="w-5 h-5 text-[#059669] shrink-0 mt-0.5" />
                     <div>
-                      <span>NDPA (Nigeria Data Protection Act 2023) Aligned</span>
-                      <p className="text-xs text-[#6B7280] font-normal mt-0.5">Strict data sovereignty protocols, lawful processing criteria, and automated consent tracking.</p>
+                      <span>NDPA Compliant (Nigeria Data Protection Act)</span>
+                      <p className="text-xs text-[#6B7280] font-normal mt-0.5">Built with strict data privacy controls, secure handling standards, and clear user consent management.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 text-sm font-semibold text-[#0B1F17]">
                     <CheckCircle2 className="w-5 h-5 text-[#059669] shrink-0 mt-0.5" />
                     <div>
-                      <span>Automated Daily Encrypted Offsite Backups</span>
-                      <p className="text-xs text-[#6B7280] font-normal mt-0.5">Immutable snapshots with tested point-in-time recovery runbooks executed every 24 hours.</p>
+                      <span>Automated Daily Backups</span>
+                      <p className="text-xs text-[#6B7280] font-normal mt-0.5">Your data is automatically backed up every 24 hours to secure offsite storage for fast, reliable recovery.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 text-sm font-semibold text-[#0B1F17]">
                     <CheckCircle2 className="w-5 h-5 text-[#059669] shrink-0 mt-0.5" />
                     <div>
-                      <span>Granular Role-Based Access Control (RBAC)</span>
-                      <p className="text-xs text-[#6B7280] font-normal mt-0.5">Scoped permissions isolating administrative, teacher, student, and finance roles.</p>
+                      <span>Role-Based Access Control</span>
+                      <p className="text-xs text-[#6B7280] font-normal mt-0.5">Custom permissions that keep management, staff, finance, and client data properly separated and secure.</p>
                     </div>
                   </div>
                 </div>
@@ -508,21 +508,21 @@ export function App() {
                   <h3 className="text-xl font-bold text-[#0B1F17]">Enterprise Security &amp; Compliance</h3>
                 </div>
                 <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
-                  Every portal and engine engineered by Neotro adheres to enterprise-grade data isolation, encrypted database partitioning, and verified audit logging for full accountability.
+                  Every platform we build follows strict security practices—combining isolated data storage, strong encryption, and full activity logs for complete accountability.
                 </p>
               </div>
 
               {/* Concrete 4-Metric Grid */}
               <div className="grid grid-cols-2 gap-3.5 pt-2">
                 <div className="p-4 rounded-xl bg-[#F7F9F8] border border-slate-200">
-                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Uptime SLA</div>
+                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Uptime</div>
                   <div className="text-2xl font-bold font-display text-[#0B1F17] mt-1">99.9%</div>
-                  <span className="text-[11px] text-slate-500 block mt-0.5">Monitored 24/7/365</span>
+                  <span className="text-[11px] text-slate-500 block mt-0.5">Monitored 24/7</span>
                 </div>
                 <div className="p-4 rounded-xl bg-[#F7F9F8] border border-slate-200">
-                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Support SLA</div>
-                  <div className="text-2xl font-bold font-display text-[#0B1F17] mt-1">&lt; 4 Hours</div>
-                  <span className="text-[11px] text-slate-500 block mt-0.5">Dedicated engineering channel</span>
+                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Support Response</div>
+                  <div className="text-2xl font-bold font-display text-[#0B1F17] mt-1">&lt; 4 Hrs</div>
+                  <span className="text-[11px] text-slate-500 block mt-0.5">Dedicated support team</span>
                 </div>
                 <div className="p-4 rounded-xl bg-[#F7F9F8] border border-slate-200">
                   <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Data Standard</div>
@@ -530,9 +530,9 @@ export function App() {
                   <span className="text-[11px] text-slate-500 block mt-0.5">Nigeria Data Protection Act</span>
                 </div>
                 <div className="p-4 rounded-xl bg-[#F7F9F8] border border-slate-200">
-                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Backup Schedule</div>
+                  <div className="text-xs font-bold text-[#093824] uppercase tracking-wider">Backups</div>
                   <div className="text-2xl font-bold font-display text-[#0B1F17] mt-1">Daily</div>
-                  <span className="text-[11px] text-slate-500 block mt-0.5">Encrypted offsite replication</span>
+                  <span className="text-[11px] text-slate-500 block mt-0.5">Encrypted offsite storage</span>
                 </div>
               </div>
             </div>
