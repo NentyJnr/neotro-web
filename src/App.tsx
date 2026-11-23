@@ -550,13 +550,13 @@ export function App() {
           {/* Section Header */}
           <div className="mb-12 text-left">
             <span className="bg-[#DCFCE7] text-[#093824] text-xs font-bold tracking-wider uppercase px-3.5 py-1.5 rounded-md inline-block mb-4 border border-[#BBF7D0]">
-              OUR SOFTWARE PLATFORMS
+              FEATURED WORK &amp; PLATFORMS
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#0B1F17] leading-tight mb-3">
-              Purpose-Built Platforms Powering Critical Sectors
+              Software &amp; Platforms We've Built
             </h2>
             <p className="text-[#4B5563] text-base max-w-[640px] leading-relaxed">
-              From academic institutions and quantity surveying consultancies to enterprise check-in systems, Neotro engineers scalable digital products tailored to domain-specific workflows.
+              Explore our ready-to-deploy platforms and custom digital products—built to solve real operational challenges across education, construction, and growing businesses.
             </p>
           </div>
 
@@ -573,11 +573,6 @@ export function App() {
             >
               <GraduationCap className={`w-4 h-4 ${platformCategory === 'education' ? 'text-[#34D399]' : 'text-slate-500'}`} />
               <span>Education</span>
-              <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
-                platformCategory === 'education' ? 'bg-white/20 text-[#BBF7D0]' : 'bg-slate-100 text-slate-600'
-              }`}>
-                3 Platforms
-              </span>
             </button>
 
             <button
@@ -591,11 +586,6 @@ export function App() {
             >
               <HardHat className={`w-4 h-4 ${platformCategory === 'construction' ? 'text-[#34D399]' : 'text-slate-500'}`} />
               <span>Construction</span>
-              <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
-                platformCategory === 'construction' ? 'bg-white/20 text-[#BBF7D0]' : 'bg-slate-100 text-slate-600'
-              }`}>
-                2 Platforms
-              </span>
             </button>
 
             <button
@@ -609,11 +599,6 @@ export function App() {
             >
               <Globe className={`w-4 h-4 ${platformCategory === 'websites' ? 'text-[#34D399]' : 'text-slate-500'}`} />
               <span>Websites</span>
-              <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
-                platformCategory === 'websites' ? 'bg-white/20 text-[#BBF7D0]' : 'bg-slate-100 text-slate-600'
-              }`}>
-                2 Platforms
-              </span>
             </button>
           </div>
 
@@ -625,14 +610,14 @@ export function App() {
               <div className="flex items-center justify-between flex-wrap gap-2 pb-2">
                 <div>
                   <span className="text-xs font-bold text-[#059669] uppercase tracking-wider font-mono">
-                    ACADEMIC &amp; EDTECH SUITE
+                    EDUCATION SOLUTIONS
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold font-display text-[#0B1F17] mt-0.5">
-                    Education Infrastructure, AI Assessment &amp; Campus Access
+                    School Management, AI Assessment &amp; Smart Attendance
                   </h3>
                 </div>
                 <span className="text-xs text-slate-500 font-medium">
-                  3 specialized platforms for Nigerian primary, secondary &amp; tertiary institutions
+                  Built for primary, secondary, and tertiary institutions
                 </span>
               </div>
 
@@ -1173,6 +1158,25 @@ export function App() {
               </div>
             </div>
           )}
+
+          {/* Bottom Callout Banner */}
+          <div className="mt-12 bg-white border border-[#E5E7EB] rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="space-y-1 max-w-2xl text-left">
+              <p className="text-sm sm:text-base text-[#0B1F17] font-semibold">
+                Need a custom platform for your business or industry?
+              </p>
+              <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed">
+                We design and build tailored web apps, portals, and automation tools.
+              </p>
+            </div>
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="px-6 py-3 rounded-xl bg-[#093824] hover:bg-[#0D4A30] text-white font-bold text-xs sm:text-sm transition-all shadow-sm hover:shadow-md inline-flex items-center gap-2 cursor-pointer shrink-0 active:scale-95"
+            >
+              <span>Discuss Your Project</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
 
         </div>
       </section>
