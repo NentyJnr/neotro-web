@@ -97,7 +97,7 @@ export const JobApplicationModal: React.FC<JobApplicationModalProps> = ({
 
       setSubmitted(true);
     } catch (err: any) {
-      setSubmitError(err.message || 'An error occurred while submitting. Please reach out to info@neotroltd.com directly.');
+      setSubmitError(err.message || 'An error occurred while submitting. Please reach out to careers@neotroltd.com directly.');
     } finally {
       setIsSubmitting(false);
     }

@@ -70,9 +70,10 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
 
     return res.status(200).json({
       status: 'active',
-      service: 'Neotro Ltd Contact API',
+      service: 'Neotro Ltd Contact & Careers API',
       resendConfigured: hasKey,
-      recipient: process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com',
+      inquiriesRecipient: process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com',
+      careersRecipient: process.env.CAREERS_EMAIL || 'careers@neotroltd.com',
       from: process.env.FROM_EMAIL || 'Neotro Portal <inquiry@neotroltd.com>',
       timestamp: new Date().toISOString()
     });
@@ -142,7 +143,9 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
       process.env.resend_Api_key ||
       process.env.resend_api_key ||
       process.env.RESEND_KEY;
-    const notificationEmail = process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com';
+    const standardEmail = process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com';
+    const careersEmail = process.env.CAREERS_EMAIL || 'careers@neotroltd.com';
+    const targetRecipient = isCareer ? careersEmail : standardEmail;
     // Use verified domain neotroltd.com sender
     const fromEmail = process.env.FROM_EMAIL || 'Neotro Portal <inquiry@neotroltd.com>';
 
@@ -150,7 +153,7 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
       console.warn('RESEND_API_KEY environment variable is not configured.');
       return res.status(503).json({
         success: false,
-        message: 'Email service configuration pending (RESEND_API_KEY not set). Please email info@neotroltd.com directly.'
+        message: `Email service configuration pending (RESEND_API_KEY not set). Please email ${isCareer ? 'careers@neotroltd.com' : 'info@neotroltd.com'} directly.`
       });
     }
 
@@ -337,7 +340,9 @@ ${escapeHtml(message)}
                     </div>
                     <div>18 Kokoro Street, Awoyaya, Lekki Corridor, Lagos, Nigeria</div>
                     <div style="margin-top: 6px; font-size: 11px; color: #94A3B8;">
-                      Inquiries delivered to <span style="color: #059669; font-weight: 600;">${escapeHtml(notificationEmail)}</span> in accordance with NDPA 2023.
+                      ${isCareer
+                        ? `Applications delivered directly to <span style="color: #059669; font-weight: 600;">${escapeHtml(targetRecipient)}</span> in accordance with NDPA 2023.`
+                        : `Inquiries delivered to <span style="color: #059669; font-weight: 600;">${escapeHtml(targetRecipient)}</span> in accordance with NDPA 2023.`}
                     </div>
                   </td>
                 </tr>
@@ -370,7 +375,7 @@ ${escapeHtml(message)}
       },
       body: JSON.stringify({
         from: fromEmail,
-        to: [notificationEmail],
+        to: [targetRecipient],
         reply_to: email,
         subject: emailSubject,
         html: htmlEmail,
@@ -398,7 +403,7 @@ ${escapeHtml(message)}
 
         const sandboxNotice = `
           <div style="background-color: #FEF3C7; border: 1px solid #F59E0B; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 13px; color: #92400E; font-family: sans-serif;">
-            <strong>⚠️ Resend Sandbox Notification:</strong> This inquiry was routed to your registered Resend account (<strong>${escapeHtml(allowedEmail)}</strong>). Target destination: <strong>${escapeHtml(notificationEmail)}</strong>.
+            <strong>⚠️ Resend Sandbox Notification:</strong> This inquiry was routed to your registered Resend account (<strong>${escapeHtml(allowedEmail)}</strong>). Target destination: <strong>${escapeHtml(targetRecipient)}</strong>.
           </div>
         `;
 
@@ -440,7 +445,7 @@ ${escapeHtml(message)}
 
       return res.status(502).json({
         success: false,
-        message: 'Email gateway delivery failed. Please reach out to info@neotroltd.com directly.',
+        message: `Email gateway delivery failed. Please reach out to ${isCareer ? 'careers@neotroltd.com' : 'info@neotroltd.com'} directly.`,
         error: errorJson
       });
     }
@@ -450,7 +455,7 @@ ${escapeHtml(message)}
       success: true,
       message: successMsg,
       id: resData?.id,
-      deliveredTo: notificationEmail
+      deliveredTo: targetRecipient
     });
   } catch (error: any) {
     console.error('Unhandled API exception:', error);
