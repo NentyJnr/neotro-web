@@ -143,6 +143,7 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
       process.env.resend_Api_key ||
       process.env.resend_api_key ||
       process.env.RESEND_KEY;
+    const notificationEmail = process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com';
     const standardEmail = process.env.NOTIFICATION_EMAIL || 'info@neotroltd.com';
     const careersEmail = process.env.CAREERS_EMAIL || 'careers@neotroltd.com';
     const targetRecipient = isCareer ? careersEmail : standardEmail;
@@ -340,6 +341,7 @@ ${escapeHtml(message)}
                     </div>
                     <div>18 Kokoro Street, Awoyaya, Lekki Corridor, Lagos, Nigeria</div>
                     <div style="margin-top: 6px; font-size: 11px; color: #94A3B8;">
+                      Inquiries delivered to <span style="color: #059669; font-weight: 600;">${escapeHtml(notificationEmail)}</span> in accordance with NDPA 2023.
                       ${isCareer
                         ? `Applications delivered directly to <span style="color: #059669; font-weight: 600;">${escapeHtml(targetRecipient)}</span> in accordance with NDPA 2023.`
                         : `Inquiries delivered to <span style="color: #059669; font-weight: 600;">${escapeHtml(targetRecipient)}</span> in accordance with NDPA 2023.`}
@@ -403,6 +405,7 @@ ${escapeHtml(message)}
 
         const sandboxNotice = `
           <div style="background-color: #FEF3C7; border: 1px solid #F59E0B; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 13px; color: #92400E; font-family: sans-serif;">
+            <strong>⚠️ Resend Sandbox Notification:</strong> This inquiry was routed to your registered Resend account (<strong>${escapeHtml(allowedEmail)}</strong>). Target destination: <strong>${escapeHtml(notificationEmail)}</strong>.
             <strong>⚠️ Resend Sandbox Notification:</strong> This inquiry was routed to your registered Resend account (<strong>${escapeHtml(allowedEmail)}</strong>). Target destination: <strong>${escapeHtml(targetRecipient)}</strong>.
           </div>
         `;
