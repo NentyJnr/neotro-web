@@ -25,35 +25,37 @@ interface DataProtectionPolicyPageProps {
   onBack: () => void;
 }
 
+const POLICY_SECTIONS = [
+  { id: 'about-neotro', label: 'About Neotro' },
+  { id: 'introduction', label: 'Introduction' },
+  { id: 'scope-and-consent', label: 'Scope and Consent' },
+  { id: 'collection-of-personal-information', label: 'Collection of Personal Information' },
+  { id: 'how-we-collect-personal-information', label: 'How We Collect Personal Information' },
+  { id: 'how-we-use-collected-information', label: 'How We Use Collected Information' },
+  { id: 'protection-and-storage', label: 'Protection and Storage' },
+  { id: 'marketing', label: 'Marketing' },
+  { id: 'sharing-personal-information', label: 'Sharing Personal Information' },
+  { id: 'cross-border-transfers', label: 'Cross Border Transfers' },
+  { id: 'customer-data-protection-rights', label: 'Customer Data Protection Rights' },
+  { id: 'cookies', label: 'Cookies & Local Storage' },
+  { id: 'privacy-policies-of-other-websites', label: 'Privacy Policies of Other Websites' },
+  { id: 'customer-consent', label: 'Customer Consent & Minors' },
+  { id: 'changes-to-privacy-policy', label: 'Changes to Privacy Policy' },
+  { id: 'contact-us', label: 'Contact Us / DPO' },
+  { id: 'declaration', label: 'Declaration' }
+];
+
 export const DataProtectionPolicyPage: React.FC<DataProtectionPolicyPageProps> = ({ onBack }) => {
   const [activeSection, setActiveSection] = useState<string>('about-neotro');
   const [hasAgreed, setHasAgreed] = useState<boolean>(false);
 
-  const sections = [
-    { id: 'about-neotro', label: 'About Neotro' },
-    { id: 'introduction', label: 'Introduction' },
-    { id: 'scope-and-consent', label: 'Scope and Consent' },
-    { id: 'collection-of-personal-information', label: 'Collection of Personal Information' },
-    { id: 'how-we-collect-personal-information', label: 'How We Collect Personal Information' },
-    { id: 'how-we-use-collected-information', label: 'How We Use Collected Information' },
-    { id: 'protection-and-storage', label: 'Protection and Storage' },
-    { id: 'marketing', label: 'Marketing' },
-    { id: 'sharing-personal-information', label: 'Sharing Personal Information' },
-    { id: 'cross-border-transfers', label: 'Cross Border Transfers' },
-    { id: 'customer-data-protection-rights', label: 'Customer Data Protection Rights' },
-    { id: 'cookies', label: 'Cookies & Local Storage' },
-    { id: 'privacy-policies-of-other-websites', label: 'Privacy Policies of Other Websites' },
-    { id: 'customer-consent', label: 'Customer Consent & Minors' },
-    { id: 'changes-to-privacy-policy', label: 'Changes to Privacy Policy' },
-    { id: 'contact-us', label: 'Contact Us / DPO' },
-    { id: 'declaration', label: 'Declaration' }
-  ];
+  const sections = POLICY_SECTIONS;
 
   // Scroll spy to highlight active TOC item
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + 200;
-      for (const section of sections) {
+      for (const section of POLICY_SECTIONS) {
         const el = document.getElementById(section.id);
         if (el) {
           const top = el.offsetTop;

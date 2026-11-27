@@ -95,15 +95,27 @@ export const AfricaMotionMap: React.FC = () => {
   ], []);
 
   const [activeIdx, setActiveIdx] = useState<number>(0);
-  const [progress, setProgress] = useState<number>(0); // 0 to 1 during flight
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
+  const [progress, setProgress] = useState<number>(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0;
+    }
+    return 0;
+  });
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(false);
 
   // Check user motion preferences
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
-    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    const handler = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+      if (e.matches) setProgress(1);
+    };
     mediaQuery.addEventListener('change', handler);
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
@@ -164,7 +176,6 @@ export const AfricaMotionMap: React.FC = () => {
 
   useEffect(() => {
     if (prefersReducedMotion) {
-      setProgress(1);
       return;
     }
 

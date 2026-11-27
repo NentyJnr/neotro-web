@@ -25,6 +25,14 @@ import {
   AlertCircle
 } from 'lucide-react';
 
+const NAVIGATION_ITEMS = [
+  { id: 'about', label: 'About' },
+  { id: 'sectors', label: 'Solutions' },
+  { id: 'why-neotro', label: 'Why Us' },
+  { id: 'partners', label: 'Partners' },
+  { id: 'contact', label: 'Contact' }
+];
+
 export function App() {
   const [activeSection, setActiveSection] = useState<'top' | 'about' | 'sectors' | 'why-neotro' | 'partners' | 'contact'>('top');
   const [platformCategory, setPlatformCategory] = useState<'education' | 'construction' | 'websites'>('education');
@@ -54,13 +62,7 @@ export function App() {
     message: ''
   });
 
-  const navigationItems = [
-    { id: 'about', label: 'About' },
-    { id: 'sectors', label: 'Solutions' },
-    { id: 'why-neotro', label: 'Why Us' },
-    { id: 'partners', label: 'Partners' },
-    { id: 'contact', label: 'Contact' }
-  ];
+  const navigationItems = NAVIGATION_ITEMS;
 
   // Track active section via IntersectionObserver
   useEffect(() => {
@@ -75,7 +77,7 @@ export function App() {
       { threshold: 0.25 }
     );
 
-    navigationItems.forEach((item) => {
+    NAVIGATION_ITEMS.forEach((item) => {
       const el = document.getElementById(item.id);
       if (el) observer.observe(el);
     });

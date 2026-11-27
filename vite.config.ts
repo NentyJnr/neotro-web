@@ -104,6 +104,20 @@ export default defineConfig(({ mode }) => {
       react(),
       tailwindcss(),
       contactApiDevPlugin()
-    ]
+    ],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules/three')) {
+              return 'three-vendor';
+            }
+            if (id.includes('node_modules/lucide-react')) {
+              return 'lucide-icons';
+            }
+          }
+        }
+      }
+    }
   };
 });
