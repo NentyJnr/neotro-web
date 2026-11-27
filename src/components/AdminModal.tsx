@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import type { Project, SectorType } from '../types';
-import { X, Plus, Trash2, Edit2, Shield, Search, RefreshCw, Check } from 'lucide-react';
+import { X, Plus, Trash2, Edit2, Shield, Search, RefreshCw, Check, Lock, KeyRound, AlertCircle } from 'lucide-react';
+
+const ADMIN_PASSCODE = 'neotro2026';
 
 interface AdminModalProps {
   isOpen: boolean;
@@ -21,6 +23,12 @@ export const AdminModal: React.FC<AdminModalProps> = ({
   onDeleteProject,
   onResetProjects
 }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return sessionStorage.getItem('neotro_admin_auth') === 'true' || Boolean(import.meta.env.DEV);
+  });
+  const [passcode, setPasscode] = useState('');
+  const [authError, setAuthError] = useState<string | null>(null);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [isAddingNew, setIsAddingNew] = useState(false);
@@ -43,6 +51,24 @@ export const AdminModal: React.FC<AdminModalProps> = ({
   });
 
   if (!isOpen) return null;
+
+  const handleAuthenticate = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passcode.trim() === ADMIN_PASSCODE) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('neotro_admin_auth', 'true');
+      setAuthError(null);
+    } else {
+      setAuthError('Invalid administrator passcode. Please contact Neotro engineering.');
+    }
+  };
+
+  const handleSignOut = () => {
+    setIsAuthenticated(false);
+    sessionStorage.removeItem('neotro_admin_auth');
+    setPasscode('');
+    setAuthError(null);
+  };
 
   const showToast = (msg: string) => {
     setNotification(msg);
@@ -148,6 +174,84 @@ export const AdminModal: React.FC<AdminModalProps> = ({
     }
   };
 
+  if (!isAuthenticated) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+        <div className="bg-[#0f172a] border border-slate-700 w-full max-w-md rounded-2xl p-6 sm:p-8 text-left shadow-2xl relative">
+          <button
+            onClick={onClose}
+            className="absolute top-5 right-5 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            aria-label="Close modal"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              <Lock className="w-6 h-6" />
+            </div>
+            <div>
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                RESTRICTED CONSOLE
+              </span>
+              <h3 className="font-display text-xl font-bold text-white mt-1">Admin Access Gate</h3>
+            </div>
+          </div>
+
+          <p className="text-xs text-slate-400 leading-relaxed mb-6">
+            Enter the authorized administrator passcode to manage live project showcase records and staging configurations.
+          </p>
+
+          {authError && (
+            <div className="mb-4 p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>{authError}</span>
+            </div>
+          )}
+
+          <form onSubmit={handleAuthenticate} className="space-y-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-300 mb-1.5 uppercase tracking-wider">
+                Administrator Passcode
+              </label>
+              <div className="relative">
+                <KeyRound className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                <input
+                  type="password"
+                  value={passcode}
+                  onChange={(e) => setPasscode(e.target.value)}
+                  placeholder="Enter passcode"
+                  autoFocus
+                  className="w-full bg-slate-900 border border-slate-700 rounded-lg pl-9 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
+                />
+              </div>
+            </div>
+
+            <div className="p-3 rounded-lg bg-slate-800/60 border border-slate-700/60 text-[11px] text-slate-400 leading-relaxed">
+              <strong>Local Staging Notice:</strong> Changes made here are saved directly to your browser's <code className="text-emerald-400">localStorage</code> for presentation testing and do not alter cloud databases.
+            </div>
+
+            <div className="flex items-center justify-end gap-3 pt-2">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 rounded-lg bg-slate-800 text-xs font-semibold text-slate-300 hover:bg-slate-700 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-5 py-2 rounded-lg bg-[#059669] hover:bg-[#10B981] text-white text-xs font-bold transition-colors cursor-pointer shadow-sm"
+              >
+                Unlock Console &rarr;
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       <div className="bg-[#0f172a] border border-slate-700 w-full max-w-5xl rounded-2xl p-6 text-left shadow-2xl relative max-h-[92vh] flex flex-col">
@@ -158,16 +262,40 @@ export const AdminModal: React.FC<AdminModalProps> = ({
               <Shield className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-display text-xl font-bold text-white">Neotro Admin Portal</h3>
+              <div className="flex items-center gap-2">
+                <h3 className="font-display text-xl font-bold text-white">Neotro Admin Portal</h3>
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  Local Preview Active
+                </span>
+              </div>
               <p className="text-xs text-slate-400">Manage live institutional project showcase &amp; metadata</p>
             </div>
           </div>
 
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleSignOut}
+              className="px-3 py-1.5 rounded-lg bg-slate-800 text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+            >
+              Lock
+            </button>
+            <button
+              onClick={onClose}
+              className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Local Preview Mode Banner */}
+        <div className="my-3 px-4 py-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-center justify-between">
+          <span>⚠️ <strong>Local Preview Mode:</strong> Modifications update your browser's <code className="bg-amber-950/60 px-1.5 py-0.5 rounded text-amber-200">localStorage</code> for presentation testing.</span>
           <button
-            onClick={onClose}
-            className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            onClick={onResetProjects}
+            className="text-[11px] underline hover:text-amber-100 transition-colors font-semibold"
           >
-            <X className="w-5 h-5" />
+            Reset to Defaults
           </button>
         </div>
 
